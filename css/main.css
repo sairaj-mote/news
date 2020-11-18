@@ -320,6 +320,10 @@ span.ripple {
   line-height: 1.5;
 }
 
+#article_page .article-heading {
+  font-size: 1.8rem;
+}
+
 @media screen and (min-width: 800px) {
   #homepage main {
     grid-template-columns: 1fr 22rem;
