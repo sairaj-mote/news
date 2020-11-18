@@ -222,7 +222,7 @@ span.ripple {
 }
 
 .article-heading {
-  font-size: 1.4em;
+  font-size: 1.5em;
   font-family: "Lora", serif;
   margin-bottom: 0.8rem;
   font-weight: 700;
@@ -238,26 +238,23 @@ span.ripple {
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.8;
-  font-size: 1.1rem;
+  font-size: 1.1em;
 }
 
 .para-heading {
   font-family: "Lora", serif;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.5em;
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1.3em;
   margin-top: 1rem;
 }
 
 .article-para {
   line-height: 1.8;
-  font-size: 1em;
+  font-size: 1.1em;
 }
 .article-para:not(:first-of-type) {
   margin-top: 1.5rem;
-}
-.article-para:not(:first-of-type)::first-letter {
-  margin-left: 4rem;
 }
 
 .para-heading + .article-para {
@@ -318,6 +315,10 @@ span.ripple {
   font-size: 1rem;
   -webkit-line-clamp: 2;
   line-height: 1.5;
+}
+
+#article_page .article-heading {
+  -webkit-line-clamp: 3;
 }
 
 @media screen and (min-width: 800px) {
