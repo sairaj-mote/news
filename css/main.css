@@ -222,10 +222,10 @@ span.ripple {
 }
 
 .article-heading {
+  font-size: 1.4em;
   font-family: "Lora", serif;
   margin-bottom: 0.8rem;
   font-weight: 700;
-  font-size: 2rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -245,13 +245,13 @@ span.ripple {
   font-family: "Lora", serif;
   margin-bottom: 0.8rem;
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.2em;
   margin-top: 1rem;
 }
 
 .article-para {
   line-height: 1.8;
-  font-size: 1.1rem;
+  font-size: 1em;
 }
 .article-para:not(:first-of-type) {
   margin-top: 1.5rem;
@@ -320,10 +320,6 @@ span.ripple {
   line-height: 1.5;
 }
 
-#article_page .article-heading {
-  font-size: 1.8rem;
-}
-
 @media screen and (min-width: 800px) {
   #homepage main {
     grid-template-columns: 1fr 22rem;
@@ -331,6 +327,18 @@ span.ripple {
 
   .article {
     grid-template-columns: 1fr min(65ch, 100%) 1fr;
+  }
+
+  .article-heading {
+    font-size: 2em;
+  }
+
+  .para-heading {
+    font-size: 1.6em;
+  }
+
+  .article-para {
+    font-size: 1.1em;
   }
 }
 @media screen and (min-width: 1280px) {
