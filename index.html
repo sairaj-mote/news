@@ -9,47 +9,103 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Playfair+Display:wght@700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header id="homepage_header" class="flex align-center">
-        <h3>RanchiMall Times</h3>
-        <sm-button variant="outlined">Log in</sm-button>
-    </header>
     <section id="homepage">
-        <main>
-            <section id="spotlight">
-                <header>
-                    <h4>Spotlight</h4>
-                </header>
-                <!--<img class="article-image" src="corona.jpg" alt="">-->
-                <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
-                <h3 class="article-heading">A Wake Up Call for India - Analysing the falling GDP</h3>
-                <p class="article-preview">India is considered as one of the fastest developing country in the world. In middle of the pandemic Covid-19, well developed country's economy has got affected. And India's condition is no different. Gross Domestic Product, it is final value of the goods and services produced within the geographic boundaries of a country during a specified period of time normally a year.  GDP has shrinked by 23.9% for the April to June quarter. In gross value added terms, the economy has shrinked upto 22.8.%. India has never encountered economic shrinkage in at least four decades. This is the first ever occurrence of retarding growth since 1996 when the country started publishing quarterly GDP data. The government's chief economic advisor allocated the declination to "exogenous factors" owing to the Covid-19 pandemic and the emergence of lockdown. Thereafter, stunted economic growth of countries around the globe. The rigid lockdown in India resulted in a huge loss among various sectors and detained economic activities.</p>
+        <header id="homepage_header" class="grid align-center">
+            <h3>RanchiMall Times</h3>
+            <sm-button variant="outlined">Log in</sm-button>
+        </header>
+        <section id="trending">
+            <section id="greetings_section">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="98" height="92" viewBox="0 0 98 92">
+                    <defs>
+                      <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+                        <stop offset="0" stop-color="#ffd95b"/>
+                        <stop offset="1" stop-color="#ff9419"/>
+                      </linearGradient>
+                      <filter id="Ellipse_2" x="6" y="0" width="92" height="92" filterUnits="userSpaceOnUse">
+                        <feOffset dy="3" input="SourceAlpha"/>
+                        <feGaussianBlur stdDeviation="6" result="blur"/>
+                        <feFlood flood-color="#f87604" flood-opacity="0.341"/>
+                        <feComposite operator="in" in2="blur"/>
+                        <feComposite in="SourceGraphic"/>
+                      </filter>
+                      <linearGradient id="linear-gradient-2" x1="0.86" y1="0.231" x2="0.092" y2="0.892" gradientUnits="objectBoundingBox">
+                        <stop offset="0" stop-color="#fff"/>
+                        <stop offset="1" stop-color="#eee"/>
+                      </linearGradient>
+                      <filter id="Union_1" x="0" y="37" width="58" height="48" filterUnits="userSpaceOnUse">
+                        <feOffset dy="3" input="SourceAlpha"/>
+                        <feGaussianBlur stdDeviation="3" result="blur-2"/>
+                        <feFlood flood-opacity="0.161"/>
+                        <feComposite operator="in" in2="blur-2"/>
+                        <feComposite in="SourceGraphic"/>
+                      </filter>
+                    </defs>
+                    <g id="Group_14" data-name="Group 14" transform="translate(-222.562 -70.94)">
+                      <g transform="matrix(1, 0, 0, 1, 222.56, 70.94)" filter="url(#Ellipse_2)">
+                        <circle id="Ellipse_2-2" data-name="Ellipse 2" cx="28" cy="28" r="28" transform="translate(24 15)" fill="url(#linear-gradient)"/>
+                      </g>
+                      <g transform="matrix(1, 0, 0, 1, 222.56, 70.94)" filter="url(#Union_1)">
+                        <path id="Union_1-2" data-name="Union 1" d="M13.333,30v-.092A15,15,0,1,1,26.692,5.6q.537-.047,1.086-.048A12.224,12.224,0,0,1,30,29.8V30Z" transform="translate(9 43)" fill="url(#linear-gradient-2)"/>
+                      </g>
+                    </g>
+                  </svg>
+                  
+                <h3>Hey There,<br>Good Morning!</h3>
+                <sm-input type="search" placeholder="Search for news"></sm-input>
             </section>
-            <section id="latest_articles">  
-                <h4>Latest articles</h4>
-                <div id="latest_articles_container" class="grid">
-                    <div class="article-card">
-                        <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
-                        <h3 class="article-heading">Covid-19 cases crosses 50000 per day.</h3>
-                        <p class="article-preview">Lorem ipsum dolor sit amet consectetur adipisicing elit.quos totam. Fuga praesentium provident iusto delectus, iste architecto.</p>
-                    </div>
-                    <div class="article-card">
-                        <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
-                        <h3 class="article-heading">Covid-19 cases crosses 50000 per day.</h3>
-                        <p class="article-preview">Lorem ipsum dolor sit amet consectetur adipisicing elit.quos totam. Fuga praesentium provident iusto delectus, iste architecto.</p>
-                    </div>
-                    <div class="article-card">
-                        <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
-                        <h3 class="article-heading">Covid-19 cases crosses 50000 per day.</h3>
-                        <p class="article-preview">Lorem ipsum dolor sit amet consectetur adipisicing elit.quos totam. Fuga praesentium provident iusto delectus, iste architecto.</p>
-                    </div>
-                    <div class="article-card">
-                        <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
-                        <h3 class="article-heading">Covid-19 cases crosses 50000 per day.</h3>
-                        <p class="article-preview">Lorem ipsum dolor sit amet consectetur adipisicing elit.quos totam. Fuga praesentium provident iusto delectus, iste architecto.</p>
-                    </div>
+            <header>
+                <h4>TRENDING</h4>
+            </header>
+            <section id="trending_articles_container" class="grid">
+                <div class="article-card">
+                    <!--<img class="article-image" src="corona.jpg" alt="">-->
+                    <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
+                    <h3 class="article-heading">A Wake Up Call for India - Analysing the falling GDP</h3>
+                    <p class="article-preview">India is considered as one of the fastest developing country in the world. In middle of the pandemic Covid-19, well developed country's economy has got affected. And India's condition is no different. Gross Domestic Product, it is final value of the goods and services produced within the geographic boundaries of a country during a specified period of time normally a year.  GDP has shrinked by 23.9% for the April to June quarter. In gross value added terms, the economy has shrinked upto 22.8.%. India has never encountered economic shrinkage in at least four decades. This is the first ever occurrence of retarding growth since 1996 when the country started publishing quarterly GDP data. The government's chief economic advisor allocated the declination to "exogenous factors" owing to the Covid-19 pandemic and the emergence of lockdown. Thereafter, stunted economic growth of countries around the globe. The rigid lockdown in India resulted in a huge loss among various sectors and detained economic activities.</p>
+                    <h5>Continue reading</h5>
+                </div>
+                <div class="article-card">
+                    <!--<img class="article-image" src="corona.jpg" alt="">-->
+                    <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
+                    <h3 class="article-heading">How African pop culture is wowing the globe</h3>
+                    <p class="article-preview">Talking about African pop culture, it is all about taste, charisma, and variety. People around the globe look upto Africa for its rich cultural endowments.</p>
+                    <h5>Continue reading</h5>
+                </div>
+                <div class="article-card">
+                    <!--<img class="article-image" src="corona.jpg" alt="">-->
+                    <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
+                    <h3 class="article-heading">How America’s war on the telecoms may boost Chinese technology</h3>
+                    <p class="article-preview">Arresting the top executive of Huawei has roiled the business world. This incident has stopped truce between United States and China trade war.</p>
+                    <h5>Continue reading</h5>
                 </div>
             </section>
-        </main>
+        </section>
+        <section id="latest_articles">  
+            <h4>Latest articles</h4>
+            <div id="latest_articles_container" class="grid">
+                <div class="article-card">
+                    <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
+                    <h3 class="article-heading">Covid-19 cases crosses 50000 per day.</h3>
+                    <p class="article-preview">Lorem ipsum dolor sit amet consectetur adipisicing elit.quos totam. Fuga praesentium provident iusto delectus, iste architecto.</p>
+                </div>
+                <div class="article-card">
+                    <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
+                    <h3 class="article-heading">Covid-19 cases crosses 50000 per day.</h3>
+                    <p class="article-preview">Lorem ipsum dolor sit amet consectetur adipisicing elit.quos totam. Fuga praesentium provident iusto delectus, iste architecto.</p>
+                </div>
+                <div class="article-card">
+                    <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
+                    <h3 class="article-heading">Covid-19 cases crosses 50000 per day.</h3>
+                    <p class="article-preview">Lorem ipsum dolor sit amet consectetur adipisicing elit.quos totam. Fuga praesentium provident iusto delectus, iste architecto.</p>
+                </div>
+                <div class="article-card">
+                    <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
+                    <h3 class="article-heading">Covid-19 cases crosses 50000 per day.</h3>
+                    <p class="article-preview">Lorem ipsum dolor sit amet consectetur adipisicing elit.quos totam. Fuga praesentium provident iusto delectus, iste architecto.</p>
+                </div>
+            </div>
+        </section>
     </section>
     <section id="article_page" class="article">
         <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
