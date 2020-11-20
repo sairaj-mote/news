@@ -1,0 +1,19 @@
+<svg width="128" height="256" viewBox="0 0 128 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="128" height="256" fill="white"/>
+<rect x="41" y="10" width="39" height="8" rx="2" fill="#DEDEDE"/>
+<rect x="41" y="21" width="79" height="13" rx="2" fill="#DEDEDE"/>
+<rect x="41" y="39" width="79" height="20" rx="2" fill="#DEDEDE"/>
+<rect x="8" y="10" width="27" height="27" rx="2" fill="#DEDEDE"/>
+<rect x="41" y="72" width="39" height="8" rx="2" fill="#DEDEDE"/>
+<rect x="41" y="83" width="79" height="13" rx="2" fill="#DEDEDE"/>
+<rect x="41" y="101" width="79" height="20" rx="2" fill="#DEDEDE"/>
+<rect x="8" y="72" width="27" height="27" rx="2" fill="#DEDEDE"/>
+<rect x="41" y="134" width="39" height="8" rx="2" fill="#DEDEDE"/>
+<rect x="41" y="145" width="79" height="13" rx="2" fill="#DEDEDE"/>
+<rect x="41" y="163" width="79" height="20" rx="2" fill="#DEDEDE"/>
+<rect x="8" y="134" width="27" height="27" rx="2" fill="#DEDEDE"/>
+<rect x="41" y="196" width="39" height="8" rx="2" fill="#DEDEDE"/>
+<rect x="41" y="207" width="79" height="13" rx="2" fill="#DEDEDE"/>
+<rect x="41" y="225" width="79" height="20" rx="2" fill="#DEDEDE"/>
+<rect x="8" y="196" width="27" height="27" rx="2" fill="#DEDEDE"/>
+</svg>
