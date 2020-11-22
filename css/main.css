@@ -200,6 +200,9 @@ span.ripple {
   padding: 1rem 0;
   margin-bottom: 1.5rem;
 }
+#homepage_header img {
+  height: 2.5rem;
+}
 #homepage_header h3 {
   font-family: "Playfair display", serif;
   font-size: 1.2rem;
@@ -279,9 +282,12 @@ span.ripple {
   overflow: hidden;
   display: grid;
   gap: 0 1rem;
+  text-decoration: none;
   cursor: pointer;
   align-self: flex-start;
   -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  color: inherit;
 }
 .article-card .article-details {
   margin-bottom: 0.3rem;
@@ -296,9 +302,37 @@ span.ripple {
 .article-card h5:last-of-type {
   margin-top: 0.5em;
 }
+.article-card.placeholder {
+  background: rgba(var(--text-color), 0.1);
+  animation: pulsate 1s alternate infinite;
+  height: 14em;
+  border-radius: 0.5em;
+}
+.article-card.placeholder:nth-of-type(2) {
+  animation-delay: 0.1s;
+}
+.article-card.placeholder:nth-of-type(3) {
+  animation-delay: 0.2s;
+}
+.article-card.placeholder:nth-of-type(4) {
+  animation-delay: 0.3s;
+}
+.article-card.placeholder:nth-of-type(5) {
+  animation-delay: 0.4s;
+}
+.article-card.placeholder:nth-of-type(6) {
+  animation-delay: 0.5s;
+}
 
+@keyframes pulsate {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
 #greetings_section {
-  text-transform: capitalize;
   margin-bottom: 3rem;
 }
 #greetings_section sm-input {
@@ -312,7 +346,14 @@ span.ripple {
 }
 
 #greeting_illustration svg {
-  width: 5rem;
+  width: 4rem;
+}
+
+#greetings {
+  text-transform: lowercase;
+}
+#greetings::first-letter {
+  text-transform: capitalize;
 }
 
 .article {
@@ -411,6 +452,7 @@ span.ripple {
 
 .article-para, .article-preview {
   color: rgba(var(--text-color), 0.9);
+  font-weight: 400;
 }
 
 @media screen and (min-width: 800px) {
@@ -432,6 +474,7 @@ span.ripple {
 
   .article-para, .article-preview {
     font-size: 1.15em;
+    white-space: line;
   }
 
   #right_drawer_container {
