@@ -182,6 +182,147 @@ span.ripple {
   cursor: pointer;
 }
 
+.copy-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+  width: auto;
+}
+.copy-row h4 {
+  margin-bottom: 0 !important;
+  font-weight: 400;
+}
+.copy-row .icon {
+  cursor: pointer;
+  padding: 0.4rem;
+  height: 1.8rem;
+  width: 1.8rem;
+}
+.copy-row .copy {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: capitalize;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  color: var(--accent-color);
+  transition: transform 0.3s;
+  border: none;
+  background: rgba(var(--text-color), 0.1);
+  -webkit-tap-highlight-color: transparent;
+  font-family: "Poppins", sans-serif;
+}
+button:focus {
+  outline: thin solid rgba(var(--text-color-light), 0.4);
+}
+button:disabled {
+  cursor: default;
+  background: rgba(var(--text-color), 0.4);
+}
+
+.primary-btn {
+  padding: 0.6rem 1.2rem !important;
+  background: var(--accent-color);
+  justify-content: center;
+  color: rgba(var(--foreground-color), 1);
+}
+
+#sign_in_popup::part(popup-body) {
+  padding: 0;
+}
+#sign_in_popup #sign_in .left {
+  background-size: 60%;
+}
+
+.sign-in-box {
+  width: 100%;
+  margin: 0 -2rem;
+  z-index: 1;
+  justify-self: center;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background: rgba(var(--foreground-color), 1);
+}
+.sign-in-box sm-input {
+  text-align: left;
+}
+.sign-in-box sm-panel {
+  width: 100%;
+}
+.sign-in-box sm-tab-header {
+  margin: 0;
+  background: none;
+  align-self: flex-start;
+}
+.sign-in-box sm-tab-header::part(tab-header) {
+  padding-bottom: 0.4rem;
+  gap: 1.5rem;
+}
+.sign-in-box sm-tab::part(tab) {
+  padding: 0.4rem 0;
+}
+.sign-in-box sm-tab-panels {
+  margin-top: 3rem;
+}
+.sign-in-box form {
+  width: 100%;
+}
+.sign-in-box h2 {
+  margin-bottom: 0.5rem;
+}
+.sign-in-box h3 {
+  font-weight: 500;
+}
+.sign-in-box h4 {
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+.sign-in-box h5 {
+  opacity: 0.8;
+  font-weight: 500;
+}
+.sign-in-box .copy-row h4 {
+  max-width: 34ch;
+}
+.sign-in-box .copy-row:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+.sign-in-box button {
+  width: auto;
+  margin-top: 1rem;
+  padding: 0.6rem 1.6rem;
+}
+.sign-in-box p {
+  margin-bottom: 0.5rem;
+  max-width: 35ch;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.sign-in-box #credentials_section {
+  border-top: 1px rgba(var(--text-color), 0.2) solid;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  animation: slide-down 0.3s forwards;
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-1rem);
+  }
+  to {
+    transform: none;
+  }
+}
 #homepage, #settings_page {
   display: grid;
   grid-template-columns: 1.5rem 1fr 1.5rem;
@@ -272,7 +413,7 @@ span.ripple {
 }
 
 #trending_articles_container, #latest_articles_container {
-  gap: 2rem;
+  gap: 3rem 2rem;
   grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
   margin-bottom: 4rem;
 }
@@ -455,9 +596,32 @@ span.ripple {
   font-weight: 400;
 }
 
+@media all and (max-width: 800px) {
+  #sign_in {
+    grid-template-rows: 1fr 1fr;
+    max-height: 90vh;
+    background: url(sign-in-back.svg) no-repeat center 6rem;
+    background-size: 60%;
+  }
+  #sign_in .left {
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+}
 @media screen and (min-width: 800px) {
   .hide-on-desktop {
     display: none;
+  }
+
+  #sign_in {
+    grid-template-columns: 28rem 24rem;
+    height: max(28rem, 60vh);
+  }
+  #sign_in .left {
+    background: url(sign-in-back.svg) no-repeat center;
+    border-radius: 0.5rem 0 0 0.5rem;
+  }
+  #sign_in .sign-in-box {
+    padding-top: 2rem;
   }
 
   .article {
