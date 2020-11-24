@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Playfair+Display:wght@700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body data-theme="dark">
+<body data-theme="dark" onload="onLoadStartUp()">
     <audio id="notification_sound">
         <source src="https://rmservices.duckdns.org/files/notification-sound.mp3" type="audio/mpeg">
         <source src="https://rmservices.duckdns.org/files/notification-sound.ogg" type="audio/ogg">
@@ -30,9 +30,17 @@
         </div>
     </sm-popup>
     <sm-notifications id="show_message"></sm-notifications>
-    <sm-popup id="sign_in_popup" open>  
+    <sm-popup id="sign_in_popup">  
         <div id="sign_in" class="grid">
-            <div class="left"></div>
+            <div class="left">
+                <header class="popup-header" slot="header">
+                    <svg class="icon" onclick="this.closest('sm-popup').hide()" viewBox="0 0 64 64">
+                        <title>close</title>
+                        <line x1="64" y1="0" x2="0" y2="64" />
+                        <line x1="64" y1="64" x2="0" y2="0" />
+                    </svg>
+                </header>
+            </div>
             <div class="sign-in-box flex direction-column">
                 <sm-tab-header target="user_entry">
                     <sm-tab>Sign In</sm-tab>
@@ -113,7 +121,8 @@
                         <sm-switch id="haptic_feedback_switcher"></sm-switch>
                     </section>
                     <section>
-                        <sm-button>Sign Out</sm-button>
+                        <sm-button id="sign_in_button" onclick="showPopup('sign_in_popup')">Sign In</sm-button>
+                        <sm-button id="sign_out_button" class="hide-completely" onclick="signOut()">Sign Out</sm-button>
                     </section>
                 </div>
             </div>
@@ -130,7 +139,12 @@
                     </svg>
                 </sm-input>
             </section>
-            <header class="header">
+            <header class="header flex align-center">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                    <title>trending</title>
+                    <polyline points="0.36 54.3 21.92 31.55 32.31 42.4 63.5 9.85"/>
+                    <polyline points="46.55 9.79 63.67 9.79 63.67 27.66"/>
+                </svg>
                 <h4>TRENDING</h4>
             </header>
             <section id="trending_articles_container" class="grid">
@@ -585,7 +599,7 @@
             `
             greetings.innerHTML = `good morning,<br>have a nice day!`
         }
-        else if(hours >= 12 && hours < 10){
+        else if(hours >= 12 && hours < 18){
             greetingIllustration.innerHTML = `
             <svg viewBox="0 0 112 93" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_d)">
@@ -698,6 +712,7 @@
                 card.setAttribute('data-articlekey', name)
                 card.classList.add('article-card')
                 card.innerHTML = `
+                    <h5 class="article-category">Culture</h5>
                     <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
                     <h3 class="article-heading">${title}</h3>
                     <p class="article-preview">${para}</p>
@@ -709,6 +724,29 @@
                 let card = document.createElement('div')
                 card.classList.add('article-card', 'placeholder')
                 return card
+            }
+        }
+        const signIn = () => {
+            return new Promise((resolve, reject) => {
+                let signInBtn = document.getElementById('sign_in_btn'),
+                    privateKeyInput = document.getElementById('get_priv_key_field')
+                signInBtn.onclick = () => {
+                    resolve(privateKeyInput.value)
+                    hidePopup()
+                }
+            })
+        }
+
+        async function signOut() {
+            // For non-cashiers logout is different
+            if (await confirmation('Do you want to sign out?', 'Stay', 'Sign Out')) {
+                await floDapps.clearCredentials()
+                setTimeout(() => {
+                    onLoadStartUp()
+                    notifications.clearAll()
+                    signInButton.classList.remove('hide-completely')
+                    signOutButton.classList.add('hide-completely')
+                }, 500);
             }
         }
     </script>
@@ -10030,12 +10068,7 @@
         }
     </script>
     
-    <script id="onLoadStartUp">
-        let genblockchainID = document.getElementById('gen-floid'),
-            genPrivateKey = document.getElementById('gen-privateKey'),
-            settings_page = document.getElementById('settings-page'),
-            mainarticle_page = document.getElementById('display_page_main')
-    
+    <script id="onLoadStartUp">    
         async function fetchArticleDetails() {
             let applicants = await floCloudAPI.requestGeneralData('test')
         }
@@ -10200,85 +10233,21 @@
             //updateVotes(articles_votesmapping, map_articlekey_column)
     
         })
-    
-    
-        let myCustomLogin = function () {
-            return new Promise((resolve, reject) => {
-    
-                document.getElementById("login-button").addEventListener("click", function () {
-                    //let userprivatekey = prompt(`Enter Private Key: `)
-                    //resolve(userprivatekey)
-                    document.getElementById('login-popup').show()
-                });
-    
-                document.getElementById("signin-button").addEventListener("click", function () {
-                    let userprivatekey = document.getElementById('privateKey-input').value.trim()
-                    document.getElementById('login-popup').hide()
-                    resolve(userprivatekey)
-                });
-    
-                document.getElementById("guest-login-button").addEventListener("click", function () {
-                    notifications.push('Please save your Private Key!', '', true)
-                    document.getElementById('login-popup').hide()
-                    homepage.classList.toggle('hide')
-                    settings_page.classList.toggle('hide')
-                    reject()
-                });
-    
-            })
-        }
-    
-        /*genblockchainID.addEventListener("click", function () {
-            navigator.clipboard.writeText(this.value).then(value => {
-                notifications.push('Blockchain ID copied')
-            })
-        })
-    
-        genPrivateKey.addEventListener("click", function () {
-            navigator.clipboard.writeText(this.value).then(value => {
-                notifications.push('Private Key copied')
-            })
-        })
-    
-        document.getElementById('ranchimalltimes-logo').addEventListener("click", function () {
-            if (!mainarticle_page.classList.contains('hide')) {
-                document.getElementById("go_back").click()
-            } else if (!settings_page.classList.contains('hide')) {
-                document.getElementById('settings-button').click()
-            }
-        })
-    
-        document.getElementById('logout-button').addEventListener("click", function () {
-            floDapps.clearCredentials()
-            notifications.push('Succesfully logged out')
-            setTimeout(function () {
-                location.reload()
-            }, 2000);
-    
-        })
-    
-        document.getElementById('settings-button').addEventListener("click", function () {
-            homepage.classList.toggle('hide')
-            settings_page.classList.toggle('hide')
-        })*/
+
+        const   signInButton = document.getElementById('sign_in_button'),
+                signOutButton = document.getElementById('sign_out_button')
     
         function onLoadStartUp() {
     
             //floDapps.addStartUpFunction('Sample', Promised Function)
             //floDapps.setAppObjectStores({sampleObs1:{}, sampleObs2:{options{autoIncrement:true, keyPath:'SampleKey'}, Indexes:{sampleIndex:{}}}})
-            floDapps.setCustomPrivKeyInput(myCustomLogin);
+            floDapps.setCustomPrivKeyInput(signIn)
     
             floDapps.launchStartUp().then(result => {
-    
-                document.getElementById("login-button").style.display = 'none'
-                document.getElementById("settings-button").style.display = 'initial'
-                console.log(result)
-                console.log(`Welcome FLO_ID: ${myFloID}`)
-    
-                // fill settings page 
-                genblockchainID.value = myFloID
-                genPrivateKey.value = myPrivKey
-    
+                signInButton.classList.add('hide-completely')
+                signOutButton.classList.remove('hide-completely')
+                //document.getElementById("login-button").style.display = 'none'
+                console.log(`Welcome FLO_ID: ${myFloID}`)    
     
                 //App functions....
                 let articledata = floCloudAPI.requestGeneralData('test')
@@ -10318,7 +10287,7 @@
                         }
                     }
     
-                    updateVotes(articles_votesmapping, map_articlekey_column)
+                    //updateVotes(articles_votesmapping, map_articlekey_column)
                 });
     
             }).catch(error => console.error(error))
