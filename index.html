@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Playfair+Display:wght@700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body data-theme="dark" onload="onLoadStartUp()">
+<body onload="onLoadStartUp()">
     <audio id="notification_sound">
         <source src="https://rmservices.duckdns.org/files/notification-sound.mp3" type="audio/mpeg">
         <source src="https://rmservices.duckdns.org/files/notification-sound.ogg" type="audio/ogg">
@@ -90,48 +90,48 @@
             </div>
         </div>
     </sm-popup>
-    <section id="homepage">
-        <header id="homepage_header" class="flex align-center">
-            <h3>RanchiMall Times</h3>
-            <div id="right_drawer_container" class="justify-right">
-                <svg viewBox="0 0 64 64" id="user_icon" class="icon" onclick="showRightDrawer()">
-                    <title>Settings</title>
-                    <path d="M31.6,0.5c8.3,0,14.2,5.6,14.2,15S41.1,32.9,32,32.9s-13.8-8-13.8-17.3s5.9-15,14.2-15"/>
-                    <path d="M25.4,33.4c-2.5,4.7-10.5,7.1-16.4,9.7c-2.4,1-4.4,14-1.6,14c7.7,4.4,16.4,6.6,25.2,6.4
-                        c8.5,0.3,16.9-2,24.2-6.4c2.8,0,0.8-12.9-1.6-14c-5.9-2.6-13.9-5-16.4-9.7"/>
-                </svg>
-                <div id="right_drawer" class="flex direction-column hide">
-                    <header class="flex space-between align-center">
-                        <h4>Me</h4>
-                        <svg viewBox="0 0 64 64" class="icon close" onclick="hideRightDrawer()">
-                            <title>close</title>
-                            <line x1="64" y1="0" x2="0" y2="64"/>
-                            <line x1="64" y1="64" x2="0" y2="0"/>
-                        </svg>
-                    </header>
-                    <h4 id="user_id"></h4>
-                    <section>
-                        <h4>Dark mode</h4>
-                        <p>Toggle dark mode on/off.</p>
-                        <sm-switch id="theme_switcher"></sm-switch>
-                    </section>
-                    <section>
-                        <h4>Haptic feedback</h4>
-                        <p>Turn haptic feedbak (vibrations) on/off.</p>
-                        <sm-switch id="haptic_feedback_switcher"></sm-switch>
-                    </section>
-                    <section>
-                        <sm-button id="sign_in_button" onclick="showPopup('sign_in_popup')">Sign In</sm-button>
-                        <sm-button id="sign_out_button" class="hide-completely" onclick="signOut()">Sign Out</sm-button>
-                    </section>
-                </div>
-            </div>
+    <sm-popup id="settings_popup">
+        <header class="popup-header" slot="header">
+            <svg class="icon" onclick="this.closest('sm-popup').hide()" viewBox="0 0 64 64">
+                <title>close</title>
+                <line x1="64" y1="0" x2="0" y2="64" />
+                <line x1="64" y1="64" x2="0" y2="0" />
+            </svg>
+            <h4>Settings</h4>
         </header>
+        <h4 id="user_id"></h4>
+        <section>
+            <h4>Dark mode</h4>
+            <p>Toggle dark mode on/off.</p>
+            <sm-switch id="theme_switcher"></sm-switch>
+        </section>
+        <section>
+            <h4>Haptic feedback</h4>
+            <p>Turn haptic feedbak (vibrations) on/off.</p>
+            <sm-switch id="haptic_feedback_switcher"></sm-switch>
+        </section>
+        <section>
+            <sm-button id="sign_in_button" onclick="showPopup('sign_in_popup')">Sign In</sm-button>
+            <sm-button id="sign_out_button" class="hide-completely" onclick="signOut()">Sign Out</sm-button>
+        </section>
+    </sm-popup>
+    <header id="main_header">
+        <div class="flex align-center space-between">
+            <h3>RanchiMall Times</h3>
+            <svg viewBox="0 0 64 64" id="user_icon" class="icon" onclick="showPopup('settings_popup')">
+                <title>Settings</title>
+                <path d="M31.6,0.5c8.3,0,14.2,5.6,14.2,15S41.1,32.9,32,32.9s-13.8-8-13.8-17.3s5.9-15,14.2-15"/>
+                <path d="M25.4,33.4c-2.5,4.7-10.5,7.1-16.4,9.7c-2.4,1-4.4,14-1.6,14c7.7,4.4,16.4,6.6,25.2,6.4
+                    c8.5,0.3,16.9-2,24.2-6.4c2.8,0,0.8-12.9-1.6-14c-5.9-2.6-13.9-5-16.4-9.7"/>
+            </svg>
+        </div>
+    </header>
+    <section id="homepage" class="page">
         <section id="trending">
             <section id="greetings_section">
                 <div id="greeting_illustration"></div>
                 <h3 id="greetings">Hey There,<br>Good Morning!</h3>
-                <sm-input type="search" placeholder="Search for news">
+                <sm-input id="" type="search" placeholder="Search for news">
                     <svg slot="icon" class="icon" viewBox="0 0 64 64">
                         <title>Search</title>
                         <path d="M25.69,1A24.7,24.7,0,0,1,43.15,43.15,24.7,24.7,0,0,1,8.23,8.22,24.53,24.53,0,0,1,25.69,1m0-1A25.7,25.7,0,1,0,43.85,7.51,25.64,25.64,0,0,0,25.69,0Z"/>
@@ -178,7 +178,7 @@
             <div id="latest_articles_container" class="grid"></div>
         </section>
     </section>
-    <section id="article_page" class="article">
+    <section id="article_page" class="article page">
         <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
         <h3 class="article-heading">A Wake Up Call for India - Analysing the falling GDP</h3>
         <h4 class="para-heading">Why Is Indian GDP the most affected?</h4>
@@ -428,7 +428,7 @@
                     }
                 }
                 else
-                    return `${finalHours} ${month} ${date} ${year}`;
+                    return `${month} ${date} ${year}`;
             } catch (e) {
                 console.error(e);
                 return time;
@@ -522,11 +522,14 @@
                             .click();
                     }
                 }
+                if(e.code === 'Escape'){
+                    hidePopup()
+                }
             })
 
             document.addEventListener('mousedown', (e) => {
                 if (e.target.closest('.article-card, sm-button, .interact')) {
-                    createRipple(e, e.target.closest('.article-card, sm-button, .interact'))
+                    createRipple(e, e.target.closest('.article-card:not(.placeholder), sm-button, .interact'))
                 }
             })
 
@@ -568,6 +571,14 @@
             generatedId.textContent = floID
             generatedKey.textContent = privKey
         }
+        addEventListener('load', ()=> {
+            if(location.hash === ''){
+                console.log('homepage')
+            }
+            else{
+                console.log(location.hash)
+            }
+        })
     </script>
     <script>
         const   hours = new Date().getHours(),
@@ -684,25 +695,6 @@
             `
             greetings.innerHTML = `Good evening!`
         }
-        const rightDrawer = document.getElementById('right_drawer')
-        function showRightDrawer(){
-            rightDrawer.classList.add('no-transformations')
-            rightDrawer.classList.remove('hide')
-            if(window.innerWidth < 800){
-                document.body.setAttribute('style', `overflow: hidden; top: -${window.scrollY}px`)
-            }
-        }
-        function hideRightDrawer(){
-            rightDrawer.classList.remove('no-transformations')
-            if(window.innerWidth > 800){
-                rightDrawer.classList.add('hide')
-            }
-            const scrollY = document.body.style.top;
-            window.scrollTo(0, parseInt(scrollY || '0') * -1);
-            setTimeout(() => {
-                document.body.setAttribute('style', `overflow: auto; top: initial`)
-            }, 300);
-        }
 
         const render = {
             articleCard(no, name, title, para){
@@ -726,6 +718,77 @@
                 return card
             }
         }
+
+        const articles = [
+            {
+            title: 'A Wake Up Call for India - Analysing the falling GDP',
+            timestamp: Date.now(),
+            category: 'Economy',
+            tags: ['economy', 'gdp', 'india', 'covid-19'],
+            body: [
+                {
+                    type: 'headline',
+                    content: `Why Is Indian GDP the most affected?`
+                },
+                {
+                    type: 'paragraph',
+                    content: `India is considered as one of the fastest developing country in the world. In middle of the pandemic Covid-19, well developed country's economy has got affected. And India's condition is
+                        no different.
+
+                        Gross Domestic Product, it is final value of the goods and services produced within the geographic boundaries of a country during a specified period of time normally a year.&nbsp;
+
+                        GDP has shrinked by 23.9% for the April to June quarter. In gross value added terms, the economy has shrinked upto 22.8.%.
+
+                        India has never encountered economic shrinkage in at least four decades.This is the first ever occurrence of retarding growth since 1996 when the country started publishing quarterly GDP data.
+
+                        The government's chief economic advisor allocated the declination to "exogenous factors" owing
+                        to the Covid-19 pandemic and the emergence of lockdown. Thereafter, stunted economic growth of
+                        countries around the globe. The rigid lockdown in India resulted in a huge loss among various
+                        sectors and detained economic activities.`
+                },
+                {
+                    type: 'headline',
+                    content: `Measures being taken by the government`
+                },
+                {
+                    type: 'paragraph',
+                    content: `Covid-19 pandemic resulted to various phases of lockdown in India, which ultimately led to loss of jobs which affected Indian economy. In the fourth phase of lockdown government opened liquor shop to cover the loss. As in liquors, there is a high margin of tax that government gets.  The managing director of State Bank of India Dinesh Khara said, slowdown in the the Indian economy has been undersurfaced and measures taken by the government in recent budget to improve capacity to spend in rural sector, creating infrastructure, inviting foreign Investments will boost growth. He mentioned that several initiatives and measures have been taken by the government to attract investments into the economy, including reduction in tax rates, terming it a “landmark decision” that will go a long way in attracting investment from overseas. Moreover he highlighted the need of growth through savings and investments.`
+                },
+                {
+                    type: 'paragraph',
+                    content: `If the economy has to grow at 10 to 11% then the investment rate has to be about 40%.  There is a need for attracting investment from overseas, infrastructure sector is another area where there is a lot of opportunity and felt need in the economy to encourage this sector.  One of the important measures taken by the government in the recent budget was to support the infrastructure sector and to invite Investments from the sovereign wealth funds and interest income of these funds will be tax free.  Also, there has been a limpid focus on upgrading the capacity to spend for the rural sector on infrastructure creation and inviting foreign investment for achieving the outcomes which are being deliberated.`
+                },
+            ]
+        }
+        ]
+
+        const articlePage = document.getElementById('article_page')
+
+        renderArticle(articles[0])
+
+        function renderArticle(article){
+            let composition = ``
+            composition += `
+                <h5 class="article-category">${article.category}</h5>
+                <h5 class="article-details">${formatedTime(article.timestamp)} &bull; 4min read</h5>
+                <h3 class="article-heading">${article.title}</h3>
+                <img class="article-image" src="corona.jpg"/>
+            `
+            article.body.forEach(element => {
+                if(element.type === 'headline'){
+                    composition += `<h4 class="para-heading">${element.content}</h4>`
+                }
+                else if(element.type === 'paragraph'){
+                    composition += `<p class="article-para">${element.content}</p>`
+                }
+            })
+            composition +=`
+                <sm-button class="like-article">Like</sm-button>
+            `
+            articlePage.innerHTML = composition
+        }
+
+
         const signIn = () => {
             return new Promise((resolve, reject) => {
                 let signInBtn = document.getElementById('sign_in_btn'),
@@ -10191,7 +10254,7 @@
 
         latestArticlesContainer.innerHTML = ``
 
-        for(let i = 0; i < 6; i++){
+        for(let i = 0; i < 3; i++){
             frag.append(render.articleCardPlaceholder())
         }
         latestArticlesContainer.append(frag)
@@ -10238,7 +10301,7 @@
                 signOutButton = document.getElementById('sign_out_button')
     
         function onLoadStartUp() {
-    
+
             //floDapps.addStartUpFunction('Sample', Promised Function)
             //floDapps.setAppObjectStores({sampleObs1:{}, sampleObs2:{options{autoIncrement:true, keyPath:'SampleKey'}, Indexes:{sampleIndex:{}}}})
             floDapps.setCustomPrivKeyInput(signIn)
