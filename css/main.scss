@@ -20,7 +20,7 @@ body {
     background-size: cover;
 }
 body[data-theme="dark"]{
-    --accent-color: #7eabff;
+    --accent-color: #4284ff;
     --text-color: 220, 220, 220;
     --text-color-light: 170, 170, 170;
     --foreground-color: 26, 26, 26;
@@ -259,6 +259,47 @@ button {
     justify-content: center;
     color: rgba(var(--foreground-color), 1);
 }
+
+#loader_page{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: rgba(var(--foreground-color), 1);
+    z-index: 10;
+    place-content: center;
+    text-align: center;
+    h4{
+        text-align: center;
+        margin-top: 2rem;
+    }
+}
+#loader_container{
+    position: relative;
+    height: 4rem;
+    overflow: hidden;
+    &::after{
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        background: linear-gradient(rgba(var(--foreground-color), 1), transparent 20%, transparent 80%, rgba(var(--foreground-color), 1));
+    }
+}
+#loader{
+    height: 8rem;
+    animation: scroll infinite 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    fill: rgba(var(--text-color), 0.2);
+}
+
+@keyframes scroll{
+    to{
+        transform: translateY(-4rem);
+    }
+}
+
 #sign_in_popup{
     &::part(popup-body){
         padding: 0;
@@ -296,7 +337,7 @@ button {
         padding: 0.4rem 0;
     }
     sm-tab-panels{
-        margin-top: 3rem;
+        margin-top: 1.5rem;
     }
     form{
         width: 100%;
@@ -340,6 +381,9 @@ button {
         padding-top: 1.5rem;
         animation: slide-down 0.3s forwards;
     }
+    #sign_in_with{
+        margin-top: 2rem;
+    }
 }
 @keyframes slide-down{
     from{
@@ -368,6 +412,7 @@ button {
     h3{
         font-family: 'Playfair display', serif;
         font-size: 1.2rem;
+        cursor: pointer;
     }
 }
 #user_icon, .close{
@@ -412,15 +457,27 @@ button {
     z-index: 1;
     padding: 1rem 0;
     margin-bottom: 1rem;
+    h4{
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 }
 #trending{
     .header{
+        .flex{
+            position: relative;
+            padding: 0.2em 0.6em;
+            border-radius: 0.2em;
+            background: var(--accent-color);
+        }
         h4{
             padding: 0.3rem 0.6rem;
-            color: var(--error-color);
+            font-size: 0.9rem;
+            color: white;
         }
         .icon{
-            stroke: var(--error-color);
+            stroke: white;
             stroke-width: 8;
         }
     } 
@@ -445,6 +502,7 @@ button {
     text-decoration: none;
     color: inherit;
     max-width: 65ch;
+    border-radius: 0.5rem;
     .article-details{
         margin-bottom: 0.3rem;
     }
@@ -465,6 +523,7 @@ button {
         animation: pulsate 1s alternate infinite;
         height: 12em;
         border-radius: 0.5em;
+        cursor: default;
         &:nth-of-type(2){
             animation-delay: 0.1s;
         }
@@ -601,10 +660,13 @@ button {
 #article_page{
     padding-bottom: 10rem;
     margin-top: 2rem;
+    .article-category{
+        margin-bottom: 1.5em;
+    }
     .article-heading{
         -webkit-line-clamp: 3;
     }
-    .like-article{
+    .vote-btn{
         margin-top: 3em;
         justify-self: center;
     }
