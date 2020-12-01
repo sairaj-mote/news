@@ -5,7 +5,7 @@
     font-family: 'Roboto', sans-serif;
 }
 :root{
-    font-size: clamp(16px, 1.2vmax, 40px);
+    font-size: clamp(16px, 1.2vmax, 36px);
 }
 body {
     --accent-color: #2e66ce;
@@ -394,6 +394,23 @@ button {
     }
 }
 
+.page{
+    animation: fade-in 0.3s;
+}
+
+@keyframes fade-in{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+#homepage{
+    background: url(work-from-home.png) no-repeat;
+    background-position: 100% -5vw;
+    background-size: 80vw;
+}
 #homepage, #main_header{
     display: grid;
     grid-template-columns: 1.5rem 1fr 1.5rem;
@@ -415,13 +432,13 @@ button {
         cursor: pointer;
     }
 }
-#user_icon, .close{
+#user_icon{
     cursor: pointer;
     background: rgba(var(--text-color), 0.06);
     height: 2.4rem;
     width: 2.4rem;
     padding: 0.7rem;
-    border-radius: 50%;
+    border-radius: 1rem;
 }
 #settings_popup{
     section{
@@ -465,30 +482,26 @@ button {
 }
 #trending{
     .header{
-        .flex{
-            position: relative;
-            padding: 0.2em 0.6em;
-            border-radius: 0.2em;
-            background: var(--accent-color);
-        }
         h4{
-            padding: 0.3rem 0.6rem;
+            position: relative;
             font-size: 0.9rem;
-            color: white;
-        }
-        .icon{
-            stroke: white;
-            stroke-width: 8;
+            color: var(--error-color);
+            padding-left: 0.8em;
+            &::before{
+                position: absolute;
+                content: '';
+                left: 0;
+                width: 0.2em;
+                height: 100%;
+                background-color: var(--error-color);
+            }
         }
     } 
 }
-#trending_articles_container{
-    gap: 3rem 2rem;
-    grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
-    margin-bottom: 4rem;
-}
+#trending_articles_container,
 #latest_articles_container{
-    gap: 3rem;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
     margin-bottom: 4rem;
 }
 .article-card{
@@ -503,6 +516,8 @@ button {
     color: inherit;
     max-width: 65ch;
     border-radius: 0.5rem;
+    padding: 1.5rem 1rem;
+    background: rgba(var(--text-color), 0.06);
     .article-details{
         margin-bottom: 0.3rem;
     }
@@ -518,41 +533,13 @@ button {
         margin-top: 0.5em;
         font-weight: 500;
     }
-    &.placeholder{
-        background: rgba(var(--text-color), 0.1);
-        animation: pulsate 1s alternate infinite;
-        height: 12em;
-        border-radius: 0.5em;
-        cursor: default;
-        &:nth-of-type(2){
-            animation-delay: 0.1s;
-        }
-        &:nth-of-type(3){
-            animation-delay: 0.2s;
-        }
-        &:nth-of-type(4){
-            animation-delay: 0.3s;
-        }
-        &:nth-of-type(5){
-            animation-delay: 0.4s;
-        }
-        &:nth-of-type(6){
-            animation-delay: 0.5s;
-        }
-    }
-}
-@keyframes pulsate{
-    from{
-        opacity: 0.4;
-    }
-    to{
-        opacity: 1;
-    }
 }
 #greetings_section{
-    margin-bottom: 3rem;
+    width: min(100%, 24rem);
+    margin-top: 7rem;
+    height: 50vh;
     sm-input{
-        margin-top: 1rem;
+        margin-top: 1.5rem;
         width: min(100%, 24rem);
         .icon{
             stroke: rgba(var(--text-color), 0.6);
@@ -564,7 +551,6 @@ button {
 #greeting_illustration svg{
     width: 4rem;
     height: 4rem;
-    margin-bottom: 0.5rem;
 }
 #greetings{
     text-transform: lowercase;

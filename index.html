@@ -159,26 +159,22 @@
         </div>
     </header>
     <section id="homepage" class="page">
+        <section id="greetings_section">
+            <div class="flex align-center space-between">
+            </div>
+            <div id="greeting_illustration"></div>
+            <h3 id="greetings">Hey There,<br>Good Morning!</h3>
+            <sm-input id="" type="search" placeholder="Search for news">
+                <svg slot="icon" class="icon" viewBox="0 0 64 64">
+                    <title>Search</title>
+                    <path d="M25.69,1A24.7,24.7,0,0,1,43.15,43.15,24.7,24.7,0,0,1,8.23,8.22,24.53,24.53,0,0,1,25.69,1m0-1A25.7,25.7,0,1,0,43.85,7.51,25.64,25.64,0,0,0,25.69,0Z"/>
+                    <line x1="63.65" y1="63.66" x2="43.36" y2="43.37"/>
+                </svg>
+            </sm-input>
+        </section>
         <section id="trending">
-            <section id="greetings_section">
-                <div id="greeting_illustration"></div>
-                <h3 id="greetings">Hey There,<br>Good Morning!</h3>
-                <sm-input id="" type="search" placeholder="Search for news">
-                    <svg slot="icon" class="icon" viewBox="0 0 64 64">
-                        <title>Search</title>
-                        <path d="M25.69,1A24.7,24.7,0,0,1,43.15,43.15,24.7,24.7,0,0,1,8.23,8.22,24.53,24.53,0,0,1,25.69,1m0-1A25.7,25.7,0,1,0,43.85,7.51,25.64,25.64,0,0,0,25.69,0Z"/>
-                        <line x1="63.65" y1="63.66" x2="43.36" y2="43.37"/>
-                    </svg>
-                </sm-input>
-            </section>
             <header class="header flex align-center">
-                <div class="flex align-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 64 64">
-                        <title>trending</title>
-                        <path d="M57.32,41.39C57.32,55,46,63.5,32,63.5S7.33,54.94,6.72,41.39C5.46,13.13,35.81.85,35.81.85s-6.25,24,5.06,29.48C44.54,32.11,45.93,18,45.93,18S57.32,21.73,57.32,41.39Z"/>
-                    </svg>
-                    <h4>TRENDING</h4>
-                </div>
+                <h4>TRENDING</h4>
             </header>
             <section id="trending_articles_container" class="grid">
                 <div class="article-card">
@@ -645,6 +641,7 @@
                     renderLatestArticles(floDapps.getNextGeneralData('articles', '0'), true)
                     isFirstLoad = false
                 }
+                showPage('homepage')
             }
             else{
                 if(history.length === 2)
@@ -918,6 +915,10 @@
                 showPage('homepage')
                 history.pushState({type: 'page', id: 'homepage'}, null, location.pathname + location.search)
             }
+        })
+        window.addEventListener('hashchange', e => {
+            console.log('changed')
+            loadPage()
         })
     </script>
     <script id="floGlobals">
