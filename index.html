@@ -147,9 +147,16 @@
         </div>
         <h4>Getting ready</h4>
     </section>
-    <header id="main_header">
-        <div class="flex align-center space-between">
+    <header id="main_header" class="grid"> 
+        <div class="grid align-center">
             <h3 id="homepage_link">RanchiMall Times</h3>
+            <sm-input id="" type="search" placeholder="Search for articles">
+                <svg slot="icon" class="icon" viewBox="0 0 64 64">
+                    <title>Search</title>
+                    <path d="M25.69,1A24.7,24.7,0,0,1,43.15,43.15,24.7,24.7,0,0,1,8.23,8.22,24.53,24.53,0,0,1,25.69,1m0-1A25.7,25.7,0,1,0,43.85,7.51,25.64,25.64,0,0,0,25.69,0Z"/>
+                    <line x1="63.65" y1="63.66" x2="43.36" y2="43.37"/>
+                </svg>
+            </sm-input>
             <svg viewBox="0 0 64 64" id="user_icon" class="icon" onclick="showPopup('settings_popup')">
                 <title>Settings</title>
                 <path d="M31.6,0.5c8.3,0,14.2,5.6,14.2,15S41.1,32.9,32,32.9s-13.8-8-13.8-17.3s5.9-15,14.2-15"/>
@@ -159,47 +166,24 @@
         </div>
     </header>
     <section id="homepage" class="page">
-        <section id="greetings_section">
-            <div class="flex align-center space-between">
-            </div>
-            <div id="greeting_illustration"></div>
-            <h3 id="greetings">Hey There,<br>Good Morning!</h3>
-            <sm-input id="" type="search" placeholder="Search for news">
-                <svg slot="icon" class="icon" viewBox="0 0 64 64">
-                    <title>Search</title>
-                    <path d="M25.69,1A24.7,24.7,0,0,1,43.15,43.15,24.7,24.7,0,0,1,8.23,8.22,24.53,24.53,0,0,1,25.69,1m0-1A25.7,25.7,0,1,0,43.85,7.51,25.64,25.64,0,0,0,25.69,0Z"/>
-                    <line x1="63.65" y1="63.66" x2="43.36" y2="43.37"/>
-                </svg>
-            </sm-input>
-        </section>
-        <section id="trending">
-            <header class="header flex align-center">
-                <h4>TRENDING</h4>
-            </header>
-            <section id="trending_articles_container" class="grid">
-                <div class="article-card">
-                    <!--<img class="article-image" src="corona.jpg" alt="">-->
-                    <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
-                    <h3 class="article-heading">A Wake Up Call for India - Analysing the falling GDP</h3>
-                    <p class="article-preview">India is considered as one of the fastest developing country in the world. In middle of the pandemic Covid-19, well developed country's economy has got affected. And India's condition is no different. Gross Domestic Product, it is final value of the goods and services produced within the geographic boundaries of a country during a specified period of time normally a year.  GDP has shrinked by 23.9% for the April to June quarter. In gross value added terms, the economy has shrinked upto 22.8.%. India has never encountered economic shrinkage in at least four decades. This is the first ever occurrence of retarding growth since 1996 when the country started publishing quarterly GDP data. The government's chief economic advisor allocated the declination to "exogenous factors" owing to the Covid-19 pandemic and the emergence of lockdown. Thereafter, stunted economic growth of countries around the globe. The rigid lockdown in India resulted in a huge loss among various sectors and detained economic activities.</p>
-                    <h5>Continue reading</h5>
+        <div class="grid">
+            <section id="greetings_section" class="flex">
+                <div class="flex direction-column">
+                    <div id="greeting_illustration"></div>
+                    <h3 id="greetings">Hey There,<br>Good Morning!</h3>
                 </div>
-                <div class="article-card">
-                    <!--<img class="article-image" src="corona.jpg" alt="">-->
-                    <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
-                    <h3 class="article-heading">How African pop culture is wowing the globe</h3>
-                    <p class="article-preview">Talking about African pop culture, it is all about taste, charisma, and variety. People around the globe look upto Africa for its rich cultural endowments.</p>
-                    <h5>Continue reading</h5>
-                </div>
-                <div class="article-card">
-                    <!--<img class="article-image" src="corona.jpg" alt="">-->
-                    <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
-                    <h3 class="article-heading">How America’s war on the telecoms may boost Chinese technology</h3>
-                    <p class="article-preview">Arresting the top executive of Huawei has roiled the business world. This incident has stopped truce between United States and China trade war.</p>
-                    <h5>Continue reading</h5>
-                </div>
+                <img src="work-from-home.svg" alt="">
             </section>
-        </section>
+            <section id="featured">
+                <header>
+                    <h4>Featured</h4>
+                </header>
+                <!--<img class="article-image" src="corona.jpg" alt="">-->
+                <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
+                <h3 class="article-heading">A Wake Up Call for India - Analysing the falling GDP</h3>
+                <p class="article-preview">India is considered as one of the fastest developing country in the world. In middle of the pandemic Covid-19, well developed country's economy has got affected. And India's condition is no different. Gross Domestic Product, it is final value of the goods and services produced within the geographic boundaries of a country during a specified period of time normally a year.  GDP has shrinked by 23.9% for the April to June quarter. In gross value added terms, the economy has shrinked upto 22.8.%. India has never encountered economic shrinkage in at least four decades. This is the first ever occurrence of retarding growth since 1996 when the country started publishing quarterly GDP data. The government's chief economic advisor allocated the declination to "exogenous factors" owing to the Covid-19 pandemic and the emergence of lockdown. Thereafter, stunted economic growth of countries around the globe. The rigid lockdown in India resulted in a huge loss among various sectors and detained economic activities.</p>
+            </section>
+        </div>
         <section id="latest_articles">  
             <header class="header">
                 <h4>LATEST ARTICLES</h4>
@@ -718,49 +702,48 @@
             </linearGradient>
             </defs>
             </svg>
-            `
-            
+            `  
             greetings.innerHTML =  `Hey there,<br>Good afternoon!`
         }
         else{
             greetingIllustration.innerHTML = `
-            <svg width="99" height="99" viewBox="0 0 99 99" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g filter="url(#filter0_d)">
-            <path d="M73.7 62.2C55.8 62.2 41.3 47.7 41.3 29.8C41.3 22.5 43.7 15.8 47.7 10.4C27.9 11.5 12.2 28 12.2 48C12.2 68.8 29.1 85.7 49.9 85.7C66.6 85.7 80.7 74.9 85.7 59.9C82 61.4 77.9 62.2 73.7 62.2Z" fill="url(#paint0_linear)"/>
-            </g>
-            <path d="M3.79999 7.6C5.89867 7.6 7.59999 5.89868 7.59999 3.8C7.59999 1.70132 5.89867 0 3.79999 0C1.70131 0 0 1.70132 0 3.8C0 5.89868 1.70131 7.6 3.79999 7.6Z" fill="url(#paint1_linear)"/>
-            <path d="M96.8 95.7C97.8493 95.7 98.7 94.8493 98.7 93.8C98.7 92.7507 97.8493 91.9 96.8 91.9C95.7506 91.9 94.9 92.7507 94.9 93.8C94.9 94.8493 95.7506 95.7 96.8 95.7Z" fill="url(#paint2_linear)"/>
-            <path d="M86.7 23.4C87.5837 23.4 88.3 22.6837 88.3 21.8C88.3 20.9163 87.5837 20.2 86.7 20.2C85.8163 20.2 85.1 20.9163 85.1 21.8C85.1 22.6837 85.8163 23.4 86.7 23.4Z" fill="url(#paint3_linear)"/>
-            <path d="M12.4 81.1C13.3941 81.1 14.2 80.2941 14.2 79.3C14.2 78.3059 13.3941 77.5 12.4 77.5C11.4059 77.5 10.6 78.3059 10.6 79.3C10.6 80.2941 11.4059 81.1 12.4 81.1Z" fill="#4253B7"/>
-            <path d="M19.4 99C20.8359 99 22 97.8359 22 96.4C22 94.9641 20.8359 93.8 19.4 93.8C17.9641 93.8 16.8 94.9641 16.8 96.4C16.8 97.8359 17.9641 99 19.4 99Z" fill="#4253B7"/>
-            <path d="M90.7 2.1C91.2523 2.1 91.7 1.65228 91.7 1.1C91.7 0.547714 91.2523 0.0999985 90.7 0.0999985C90.1477 0.0999985 89.7 0.547714 89.7 1.1C89.7 1.65228 90.1477 2.1 90.7 2.1Z" fill="#4253B7"/>
-            <defs>
-            <filter id="filter0_d" x="3.2" y="5.4" width="91.5" height="93.3" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
-            <feOffset dy="4"/>
-            <feGaussianBlur stdDeviation="4.5"/>
-            <feColorMatrix type="matrix" values="0 0 0 0 0.121569 0 0 0 0 0.0431373 0 0 0 0 0.219608 0 0 0 0.24 0"/>
-            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
-            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
-            </filter>
-            <linearGradient id="paint0_linear" x1="18.049" y1="79.8901" x2="70.0209" y2="27.889" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#0E0319"/>
-            <stop offset="1" stop-color="#6D30C6"/>
-            </linearGradient>
-            <linearGradient id="paint1_linear" x1="0.558399" y1="7.1335" x2="6.8166" y2="0.871708" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#0E0319"/>
-            <stop offset="1" stop-color="#6D30C6"/>
-            </linearGradient>
-            <linearGradient id="paint2_linear" x1="95.1481" y1="95.4429" x2="98.3268" y2="92.2623" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#0E0319"/>
-            <stop offset="1" stop-color="#6D30C6"/>
-            </linearGradient>
-            <linearGradient id="paint3_linear" x1="85.3272" y1="23.2212" x2="87.9825" y2="20.5644" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#0E0319"/>
-            <stop offset="1" stop-color="#6D30C6"/>
-            </linearGradient>
-            </defs>
+            <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_d)">
+                <path d="M88.7 77.2C70.8 77.2 56.3 62.7 56.3 44.8C56.3 37.5 58.7 30.8 62.7 25.4C42.9 26.5 27.2 43 27.2 63C27.2 83.8 44.1 100.7 64.9 100.7C81.6 100.7 95.7 89.9 100.7 74.9C97 76.4 92.9 77.2 88.7 77.2Z" fill="url(#paint0_linear)"/>
+                </g>
+                <path d="M18.8 22.6C20.8987 22.6 22.6 20.8987 22.6 18.8C22.6 16.7013 20.8987 15 18.8 15C16.7013 15 15 16.7013 15 18.8C15 20.8987 16.7013 22.6 18.8 22.6Z" fill="url(#paint1_linear)"/>
+                <path d="M111.8 110.7C112.849 110.7 113.7 109.849 113.7 108.8C113.7 107.751 112.849 106.9 111.8 106.9C110.751 106.9 109.9 107.751 109.9 108.8C109.9 109.849 110.751 110.7 111.8 110.7Z" fill="url(#paint2_linear)"/>
+                <path d="M101.7 38.4C102.584 38.4 103.3 37.6837 103.3 36.8C103.3 35.9163 102.584 35.2 101.7 35.2C100.816 35.2 100.1 35.9163 100.1 36.8C100.1 37.6837 100.816 38.4 101.7 38.4Z" fill="url(#paint3_linear)"/>
+                <path d="M27.4 96.1C28.3941 96.1 29.2 95.2941 29.2 94.3C29.2 93.3059 28.3941 92.5 27.4 92.5C26.4059 92.5 25.6 93.3059 25.6 94.3C25.6 95.2941 26.4059 96.1 27.4 96.1Z" fill="#B6C0FF"/>
+                <path d="M34.4 114C35.8359 114 37 112.836 37 111.4C37 109.964 35.8359 108.8 34.4 108.8C32.9641 108.8 31.8 109.964 31.8 111.4C31.8 112.836 32.9641 114 34.4 114Z" fill="#B6C0FF"/>
+                <path d="M105.7 17.1C106.252 17.1 106.7 16.6523 106.7 16.1C106.7 15.5477 106.252 15.1 105.7 15.1C105.148 15.1 104.7 15.5477 104.7 16.1C104.7 16.6523 105.148 17.1 105.7 17.1Z" fill="#B6C0FF"/>
+                <defs>
+                <filter id="filter0_d" x="18.2" y="20.4" width="91.5" height="93.3" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+                <feOffset dy="4"/>
+                <feGaussianBlur stdDeviation="4.5"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0.121569 0 0 0 0 0.0431373 0 0 0 0 0.219608 0 0 0 0.24 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+                </filter>
+                <linearGradient id="paint0_linear" x1="33.049" y1="94.8901" x2="85.0209" y2="42.889" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#C58BFF"/>
+                <stop offset="1" stop-color="#FAF7FF"/>
+                </linearGradient>
+                <linearGradient id="paint1_linear" x1="15.5584" y1="22.1335" x2="21.8166" y2="15.8717" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EBDBFB"/>
+                <stop offset="1" stop-color="#6D30C6"/>
+                </linearGradient>
+                <linearGradient id="paint2_linear" x1="110.148" y1="110.443" x2="113.327" y2="107.262" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A852FF"/>
+                <stop offset="1" stop-color="#6D30C6"/>
+                </linearGradient>
+                <linearGradient id="paint3_linear" x1="100.327" y1="38.2212" x2="102.982" y2="35.5644" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#AF5FFF"/>
+                <stop offset="1" stop-color="#6D30C6"/>
+                </linearGradient>
+                </defs>
             </svg>
             `
             greetings.innerHTML = `Good evening!`
@@ -774,11 +757,17 @@
                 card.setAttribute('data-article-id', key)
                 card.classList.add('article-card')
                 card.innerHTML = `
+                    <img src="work-from-home.svg"/>
                     <h5 class="article-category">${category}</h5>
                     <h5 class="article-details">${formatedTime(time)} &bull; 4min read</h5>
                     <h3 class="article-heading">${title}</h3>
                     <p class="article-preview">${body[0].content}</p>
-                    <h5>Continue reading</h5>
+                    <div class="flex align-center space-between">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 64 64">
+                            <title>like</title>
+                            <path d="M46.63,4.45A20.23,20.23,0,0,0,32,10.74,20.23,20.23,0,0,0,17.37,4.45C6,4.45,0,13.82,0,25.5,0,50.88,32,59.55,32,59.55s32-8.67,32-34C64,13.82,58,4.45,46.63,4.45Z"/>
+                        </svg>
+                    </div>
                 `
                 return card
             }
@@ -838,7 +827,14 @@
                 {title, category, body} = article.message
             let composition = ``
             composition += `
-                <h5 class="article-category">${category}</h5>
+                <div class="flex align-center">    
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon back" viewBox="0 0 64 64">
+                        <title>Go back</title>
+                        <line x1="1" y1="32" x2="64" y2="32"/>
+                        <polyline points="29.64 60.97 0.65 32 29.64 3.03"/>
+                    </svg>
+                    <h5 class="article-category">${category}</h5>
+                </div>
                 <h5 class="article-details">${formatedTime(time)} &bull; 4min read</h5>
                 <h3 class="article-heading">${title}</h3>
                 <img class="article-image" src="corona.jpg"/>
@@ -911,7 +907,7 @@
             /*else if(e.target.closest('.vote-btn')){
                 vote()
             }*/
-            else if(e.target.closest('#homepage_link')){
+            else if(e.target.closest('#homepage_link') || e.target.closest('.back')){
                 showPage('homepage')
                 history.pushState({type: 'page', id: 'homepage'}, null, location.pathname + location.search)
             }
@@ -930,10 +926,10 @@
     
             //Required for blockchain API operators
             apiURL: {
-                FLO: ['https://explorer.mediciland.com/', 'https://livenet.flocha.in/', 'https://flosight.duckdns.org/',
+                FLO: ['https://explorer.mediciland.com/', 'https://livenet.flocha.in/', 'https://flosight1.duckdns.org/',
                     'http://livenet-explorer.floexperiments.com/'
                 ],
-                FLO_TEST: ['https://testnet-flosight.duckdns.org/', 'https://testnet.flocha.in/']
+                FLO_TEST: ['https://testnet-flosight1.duckdns.org/', 'https://testnet.flocha.in/']
             },
             adminID: "FKAEdnPfjXLHSYwrXQu377ugN4tXU7VGdf",
             sendAmt: 0.001,
