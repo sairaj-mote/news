@@ -6,6 +6,14 @@
     <title>RanchiMall Times</title>
     <link rel="shortcut icon" href="logo.png" type="image/png">
     <link rel="stylesheet" href="css/main.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-86RVPYPYDP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-86RVPYPYDP');
+    </script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Playfair+Display:wght@700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -150,6 +158,7 @@
     <header id="main_header" class="grid"> 
         <div class="grid align-center">
             <h3 id="homepage_link">RanchiMall Times</h3>
+            <h3 id="greetings"></h3>
             <sm-input id="" type="search" placeholder="Search for articles">
                 <svg slot="icon" class="icon" viewBox="0 0 64 64">
                     <title>Search</title>
@@ -166,34 +175,74 @@
         </div>
     </header>
     <section id="homepage" class="page">
-        <div class="grid">
-            <section id="greetings_section" class="flex">
-                <div class="flex direction-column">
-                    <div id="greeting_illustration"></div>
-                    <h3 id="greetings">Hey There,<br>Good Morning!</h3>
-                </div>
-                <img src="work-from-home.svg" alt="">
-            </section>
-            <section id="featured">
-                <header>
-                    <h4>Featured</h4>
-                </header>
-                <!--<img class="article-image" src="corona.jpg" alt="">-->
-                <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
-                <h3 class="article-heading">A Wake Up Call for India - Analysing the falling GDP</h3>
-                <p class="article-preview">India is considered as one of the fastest developing country in the world. In middle of the pandemic Covid-19, well developed country's economy has got affected. And India's condition is no different. Gross Domestic Product, it is final value of the goods and services produced within the geographic boundaries of a country during a specified period of time normally a year.  GDP has shrinked by 23.9% for the April to June quarter. In gross value added terms, the economy has shrinked upto 22.8.%. India has never encountered economic shrinkage in at least four decades. This is the first ever occurrence of retarding growth since 1996 when the country started publishing quarterly GDP data. The government's chief economic advisor allocated the declination to "exogenous factors" owing to the Covid-19 pandemic and the emergence of lockdown. Thereafter, stunted economic growth of countries around the globe. The rigid lockdown in India resulted in a huge loss among various sectors and detained economic activities.</p>
-            </section>
-        </div>
-        <section id="latest_articles">  
-            <header class="header">
-                <h4>LATEST ARTICLES</h4>
-            </header>
-            <div id="latest_articles_container" class="grid"></div>
+        <section id="greetings_section" class="grid">
+            <img src="tagline.svg" alt="">
+            <img src="work-from-home.svg" alt="">
         </section>
+        <section id="featured">
+            <header>
+                <h4>Featured</h4>
+            </header>
+            <img class="article-image" src="corona.jpg" alt="">
+            <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
+            <h3 class="article-heading">A Wake Up Call for India - Analysing the falling GDP</h3>
+            <p class="article-preview">India is considered as one of the fastest developing country in the world. In middle of the pandemic Covid-19, well developed country's economy has got affected. And India's condition is no different. Gross Domestic Product, it is final value of the goods and services produced within the geographic boundaries of a country during a specified period of time normally a year.  GDP has shrinked by 23.9% for the April to June quarter. In gross value added terms, the economy has shrinked upto 22.8.%. India has never encountered economic shrinkage in at least four decades. This is the first ever occurrence of retarding growth since 1996 when the country started publishing quarterly GDP data. The government's chief economic advisor allocated the declination to "exogenous factors" owing to the Covid-19 pandemic and the emergence of lockdown. Thereafter, stunted economic growth of countries around the globe. The rigid lockdown in India resulted in a huge loss among various sectors and detained economic activities.</p>
+            <div class="grid card-options align-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 64 64">
+                    <title>like</title>
+                    <path d="M46.63,4.45A20.23,20.23,0,0,0,32,10.74,20.23,20.23,0,0,0,17.37,4.45C6,4.45,0,13.82,0,25.5,0,50.88,32,59.55,32,59.55s32-8.67,32-34C64,13.82,58,4.45,46.63,4.45Z"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 64 64">
+                    <path d="M31.218 49.5871L11.5 63.0531V6C11.5 2.96243 13.9624 0.5 17 0.5H46C49.0376 0.5 51.5 2.96243 51.5 6V63.0531L31.782 49.5871L31.5 49.3945L31.218 49.5871Z"/>
+                </svg>
+                <span>
+                    Read More
+                </span>
+            </div>
+        </section>
+        <sm-tab-header target="article_categories" variant="tab" class="round header">
+            <sm-tab>Latest</sm-tab>
+            <sm-tab>Trending</sm-tab>
+            <sm-tab>Tech</sm-tab>
+            <sm-tab>Politics</sm-tab>
+            <sm-tab>Economics</sm-tab>
+            <sm-tab>Science</sm-tab>
+            <sm-tab>Arts</sm-tab>
+        </sm-tab-header>
+        <sm-tab-panels id="article_categories">
+            <sm-panel id="latest_articles_container"></sm-panel>
+            <sm-panel></sm-panel>
+        </sm-tab-panels>
     </section>
-    <section id="article_page" class="article page"></section>
+    <section id="article_page" class="article page">
+        <div id="article_options" class="flex">
+            <div class="vote-btn option interact">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon liked" viewBox="0 0 64 64">
+                    <title>like</title>
+                    <path d="M46.63,4.45A20.23,20.23,0,0,0,32,10.74,20.23,20.23,0,0,0,17.37,4.45C6,4.45,0,13.82,0,25.5,0,50.88,32,59.55,32,59.55s32-8.67,32-34C64,13.82,58,4.45,46.63,4.45Z"/>
+                </svg>
+                <span class="label">2345</span>
+            </div>
+            <div class="bookmark-btn option interact">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon bookmarked" viewBox="0 0 64 64">
+                    <path d="M31.218 49.5871L11.5 63.0531V6C11.5 2.96243 13.9624 0.5 17 0.5H46C49.0376 0.5 51.5 2.96243 51.5 6V63.0531L31.782 49.5871L31.5 49.3945L31.218 49.5871Z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="flex align-center">    
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon back" viewBox="0 0 64 64">
+                <title>Go back</title>
+                <line x1="1" y1="32" x2="64" y2="32"/>
+                <polyline points="29.64 60.97 0.65 32 29.64 3.03"/>
+            </svg>
+            <h5 id="article_category" class="article-category"></h5>
+        </div>
+        <h5 id="article_details" class="article-details"></h5>
+        <h3 id="article_title" class="article-heading"></h3>
+        <div id="article_body"></div>
+    </section>
     <footer id="main_footer">
-        <h4>Created by RanchiMall, a blockchain company</h4>
+        <h4>Created by RanchiMall, a blockchain incorporated entity</h4>
     </footer>
     <script src="components.js"></script>
     <script>
@@ -638,11 +687,11 @@
     </script>
     <script>
         const   hours = new Date().getHours(),
-                greetingIllustration = document.getElementById('greeting_illustration'),
+                //greetingIllustration = document.getElementById('greeting_illustration'),
                 greetings = document.getElementById('greetings'),
                 frag = document.createDocumentFragment()
         if (hours > 4 && hours < 12){
-            greetingIllustration.innerHTML = `
+            /*greetingIllustration.innerHTML = `
             <svg viewBox="0 0 93 93" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_d)">
             <path d="M46.3 80.6C67.4525 80.6 84.6 63.4525 84.6 42.3C84.6 21.1475 67.4525 4 46.3 4C25.1475 4 8 21.1475 8 42.3C8 63.4525 25.1475 80.6 46.3 80.6Z" fill="url(#paint0_linear)"/>
@@ -663,11 +712,11 @@
             </linearGradient>
             </defs>
             </svg>
-            `
-            greetings.innerHTML = `good morning,<br>have a nice day!`
+            `*/
+            greetings.innerHTML = `good morning`
         }
         else if(hours >= 12 && hours < 18){
-            greetingIllustration.innerHTML = `
+            /*greetingIllustration.innerHTML = `
             <svg viewBox="0 0 112 93" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_d)">
             <path d="M65.5 80.6C86.6525 80.6 103.8 63.4525 103.8 42.3C103.8 21.1475 86.6525 4 65.5 4C44.3475 4 27.2 21.1475 27.2 42.3C27.2 63.4525 44.3475 80.6 65.5 80.6Z" fill="url(#paint0_linear)"/>
@@ -704,11 +753,11 @@
             </linearGradient>
             </defs>
             </svg>
-            `  
-            greetings.innerHTML =  `Hey there,<br>Good afternoon!`
+            `  */
+            greetings.innerHTML =  `Good afternoon`
         }
         else{
-            greetingIllustration.innerHTML = `
+            /*greetingIllustration.innerHTML = `
             <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d)">
                 <path d="M88.7 77.2C70.8 77.2 56.3 62.7 56.3 44.8C56.3 37.5 58.7 30.8 62.7 25.4C42.9 26.5 27.2 43 27.2 63C27.2 83.8 44.1 100.7 64.9 100.7C81.6 100.7 95.7 89.9 100.7 74.9C97 76.4 92.9 77.2 88.7 77.2Z" fill="url(#paint0_linear)"/>
@@ -747,8 +796,8 @@
                 </linearGradient>
                 </defs>
             </svg>
-            `
-            greetings.innerHTML = `Good evening!`
+            `*/
+            greetings.innerHTML = `Good evening`
         }
 
         const render = {
@@ -764,10 +813,13 @@
                     <h5 class="article-details">${formatedTime(time)} &bull; 4min read</h5>
                     <h3 class="article-heading">${title}</h3>
                     <p class="article-preview">${body[0].content}</p>
-                    <div class="flex align-center space-between">
+                    <div class="grid card-options align-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 64 64">
                             <title>like</title>
                             <path d="M46.63,4.45A20.23,20.23,0,0,0,32,10.74,20.23,20.23,0,0,0,17.37,4.45C6,4.45,0,13.82,0,25.5,0,50.88,32,59.55,32,59.55s32-8.67,32-34C64,13.82,58,4.45,46.63,4.45Z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 64 64">
+                            <path d="M31.218 49.5871L11.5 63.0531V6C11.5 2.96243 13.9624 0.5 17 0.5H46C49.0376 0.5 51.5 2.96243 51.5 6V63.0531L31.782 49.5871L31.5 49.3945L31.218 49.5871Z"/>
                         </svg>
                     </div>
                 `
@@ -817,7 +869,10 @@
             }
         ]
 
-        const articlePage = document.getElementById('article_page')
+        const   articleTitle = document.getElementById('article_title'),
+                articleCategory = document.getElementById('article_category'),
+                articleDetails = document.getElementById('article_details'),
+                articleBody = document.getElementById('article_body')
         
         let currentArticle = {}
 
@@ -827,18 +882,11 @@
             currentArticle.Id = articleId
             let {time} = article,
                 {title, category, body} = article.message
+            articleTitle.textContent = title
+            articleCategory.textContent = category
+            articleDetails.innerHTML = `${formatedTime(time)} &bull; 4min read`
             let composition = ``
             composition += `
-                <div class="flex align-center">    
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon back" viewBox="0 0 64 64">
-                        <title>Go back</title>
-                        <line x1="1" y1="32" x2="64" y2="32"/>
-                        <polyline points="29.64 60.97 0.65 32 29.64 3.03"/>
-                    </svg>
-                    <h5 class="article-category">${category}</h5>
-                </div>
-                <h5 class="article-details">${formatedTime(time)} &bull; 4min read</h5>
-                <h3 class="article-heading">${title}</h3>
                 <img class="article-image" src="corona.jpg"/>
             `
             body.forEach(element => {
@@ -849,10 +897,8 @@
                     composition += `<p class="article-para">${element.content}</p>`
                 }
             })
-            composition +=`
-                <sm-button class="vote-btn">Upvote</sm-button>
-            `
-            articlePage.innerHTML = composition
+
+            articleBody.innerHTML = composition
         }
         
         const latestArticlesContainer = document.getElementById('latest_articles_container'),
@@ -928,10 +974,10 @@
     
             //Required for blockchain API operators
             apiURL: {
-                FLO: ['https://explorer.mediciland.com/', 'https://livenet.flocha.in/', 'https://flosight1.duckdns.org/',
+                FLO: ['https://explorer.mediciland.com/', 'https://livenet.flocha.in/', 'https://flosight.duckdns.org/',
                     'http://livenet-explorer.floexperiments.com/'
                 ],
-                FLO_TEST: ['https://testnet-flosight1.duckdns.org/', 'https://testnet.flocha.in/']
+                FLO_TEST: ['https://testnet-flosight.duckdns.org/', 'https://testnet.flocha.in/']
             },
             adminID: "FKAEdnPfjXLHSYwrXQu377ugN4tXU7VGdf",
             sendAmt: 0.001,
