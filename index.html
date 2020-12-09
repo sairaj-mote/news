@@ -108,21 +108,45 @@
             </svg>
             <h4>Settings</h4>
         </header>
-        <h4 id="user_id"></h4>
-        <section>
-            <h4>Dark mode</h4>
-            <p>Toggle dark mode on/off.</p>
-            <sm-switch id="theme_switcher"></sm-switch>
-        </section>
-        <section>
-            <h4>Haptic feedback</h4>
-            <p>Turn haptic feedbak (vibrations) on/off.</p>
-            <sm-switch id="haptic_feedback_switcher"></sm-switch>
-        </section>
-        <section>
-            <sm-button id="sign_in_button" onclick="showPopup('sign_in_popup')">Sign In</sm-button>
-            <sm-button id="sign_out_button" class="hide-completely" onclick="signOut()">Sign Out</sm-button>
-        </section>
+        <div class="grid">
+            <ul id="sidebar">
+                <li class="sidebar-item interact active" data-target="profile_panel">Profile</li>
+                <li class="sidebar-item interact" data-target="personalise_panel">personalise</li>
+                <li class="sidebar-item interact" data-target="about_panel">About</li>
+            </ul>
+            <div id="settings_panel">
+                <div id="profile_panel" class="panel">
+                    <h5>My FLO ID</h5>
+                    <div class="copy-row">
+                        <h4 id="user_id" class="copy"></h4>
+                        <svg class="icon" onclick="copyToClipboard(this.parentNode)" viewBox="0 0 64 64">
+                            <title>Copy</title>
+                            <rect x="16" y="16" width="48" height="48" rx="6" />
+                            <path d="M.5,47.52V6.5a6,6,0,0,1,6-6h41" />
+                        </svg>
+                    </div>
+                    <section>
+                        <sm-button id="sign_in_button" onclick="showPopup('sign_in_popup')">Sign In</sm-button>
+                        <sm-button id="sign_out_button" class="hide-completely" onclick="signOut()">Sign Out</sm-button>
+                    </section>
+                </div>
+                <div id="personalise_panel" class="panel hide-completely">
+                    <section>
+                        <h4>Dark mode</h4>
+                        <p>Toggle dark mode on/off.</p>
+                        <sm-switch id="theme_switcher"></sm-switch>
+                    </section>
+                    <section>
+                        <h4>Haptic feedback</h4>
+                        <p>Turn haptic feedbak (vibrations) on/off.</p>
+                        <sm-switch id="haptic_feedback_switcher"></sm-switch>
+                    </section>
+                </div>
+                <div id="about_panel" class="panel hide-completely">
+                    <p>Created by RanchiMall, a blockchain incorporated entity</p>
+                </div>
+            </div>
+        </div>
     </sm-popup>
     <section id="loader_page" class="grid">
         <div id="loader_container">
@@ -159,13 +183,18 @@
         <div class="grid align-center">
             <h3 id="homepage_link">RanchiMall Times</h3>
             <h3 id="greetings"></h3>
-            <sm-input id="" type="search" placeholder="Search for articles">
+            <svg viewBox="0 0 64 64" id="search_articles_icon" class="icon">
+                <title>Search</title>
+                <path d="M25.69,1A24.7,24.7,0,0,1,43.15,43.15,24.7,24.7,0,0,1,8.23,8.22,24.53,24.53,0,0,1,25.69,1m0-1A25.7,25.7,0,1,0,43.85,7.51,25.64,25.64,0,0,0,25.69,0Z"/>
+                <line x1="63.65" y1="63.66" x2="43.36" y2="43.37"/>
+            </svg>
+            <!--<sm-input id="" type="search" placeholder="Search for articles">
                 <svg slot="icon" class="icon" viewBox="0 0 64 64">
                     <title>Search</title>
                     <path d="M25.69,1A24.7,24.7,0,0,1,43.15,43.15,24.7,24.7,0,0,1,8.23,8.22,24.53,24.53,0,0,1,25.69,1m0-1A25.7,25.7,0,1,0,43.85,7.51,25.64,25.64,0,0,0,25.69,0Z"/>
                     <line x1="63.65" y1="63.66" x2="43.36" y2="43.37"/>
                 </svg>
-            </sm-input>
+            </sm-input>-->
             <svg viewBox="0 0 64 64" id="user_icon" class="icon" onclick="showPopup('settings_popup')">
                 <title>Settings</title>
                 <path d="M31.6,0.5c8.3,0,14.2,5.6,14.2,15S41.1,32.9,32,32.9s-13.8-8-13.8-17.3s5.9-15,14.2-15"/>
@@ -174,7 +203,7 @@
             </svg>
         </div>
     </header>
-    <section id="homepage" class="page">
+    <section id="homepage" class="page hide-completely">
         <section id="greetings_section" class="grid">
             <img src="tagline.svg" alt="">
             <img src="work-from-home.svg" alt="">
@@ -242,7 +271,7 @@
         <div id="article_body"></div>
     </section>
     <footer id="main_footer">
-        <h4>Created by RanchiMall, a blockchain incorporated entity</h4>
+        <p>Created by RanchiMall, a blockchain incorporated entity</p>
     </footer>
     <script src="components.js"></script>
     <script>
@@ -329,11 +358,12 @@
             zIndex = 10;
 
         async function showPopup(popup, pinned) {
-            let thisPopup = document.getElementById(popup);
+            if(!domRefs[popup])
+                domRefs[popup] = document.getElementById(popup);
             zIndex++
-            thisPopup.setAttribute('style', `z-index: ${zIndex}`)
-            popupStack = thisPopup.show(pinned, popupStack)
-            return thisPopup;
+            domRefs[popup].setAttribute('style', `z-index: ${zIndex}`)
+            popupStack = domRefs[popup].show(pinned, popupStack)
+            return domRefs[popup];
         }
 
         // hides the popup or modal 
@@ -414,8 +444,8 @@
 
         // displays a popup for asking permission. Use this instead of JS confirm
         let confirmation = (message, cancelText = 'Cancel', confirmText = 'OK') => {
+            let popup = document.getElementById('confirmation');
             return new Promise(resolve => {
-                let popup = document.getElementById('confirmation');
                 showPopup('confirmation')
                 popup.querySelector('#confirm_message').textContent = message;
                 let submitButton = popup.querySelector('.submit-btn')
@@ -932,7 +962,9 @@
 
         function showPage(pageId){
             allPages.forEach(page => page.classList.add('hide-completely'))
-            document.getElementById(pageId).classList.remove('hide-completely')
+            if(!domRefs[pageId])
+                domRefs[pageId] = document.getElementById(pageId)
+            domRefs[pageId].classList.remove('hide-completely')
             if(pageId === 'article_page'){
                 currentScrollPosition = window.pageYOffset
                 window.scroll(0, 0)
@@ -944,6 +976,28 @@
                 }
                 window.scroll(0, currentScrollPosition)
             }
+        }
+
+        const   sidebar = document.getElementById('sidebar'),
+                settingsPanel = document.getElementById('settings_panel'),
+                allPanels = document.querySelectorAll('.panel'),
+                allSidebarItems = document.querySelectorAll('.sidebar-item')
+        
+        const domRefs = {}
+
+        function showPanel(item, panel){
+            if(window.innerWidth < 720){
+                sidebar.classList.add('hide-on-mobile')
+                settingsPanel.classList.remove('hide-on-mobile')
+            }
+            else{
+                allSidebarItems.forEach(panel => panel.classList.remove('active'))
+                item.classList.add('active')
+            }
+            allPanels.forEach(panel => panel.classList.add('hide-completely'))
+            if(!domRefs[panel])
+                domRefs[panel] = document.getElementById(panel)
+            domRefs[panel].classList.remove('hide-completely')
         }
 
         document.addEventListener('click', e => {
@@ -958,6 +1012,10 @@
             else if(e.target.closest('#homepage_link') || e.target.closest('.back')){
                 showPage('homepage')
                 history.pushState({type: 'page', id: 'homepage'}, null, location.pathname + location.search)
+            }
+            else if(e.target.closest('.sidebar-item')){
+                let target = e.target.closest('.sidebar-item')
+                showPanel(target, target.dataset.target)
             }
         })
         window.addEventListener('hashchange', e => {
@@ -10216,6 +10274,7 @@
                 signInButton.classList.add('hide-completely')
                 signOutButton.classList.remove('hide-completely')
                 console.log(`Welcome FLO_ID: ${myFloID}`)    
+                document.getElementById('user_id').textContent = myFloID
             }).catch(error => console.error(error))
         }
     </script>

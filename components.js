@@ -1918,14 +1918,13 @@ smPopup.innerHTML = `
     right: 0;
     place-items: center;
     background: rgba(0, 0, 0, 0.6);
-    -webkit-transition: opacity 0.3s ease;
-    -o-transition: opacity 0.3s ease;
-    transition: opacity 0.3s ease;
+    -webkit-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s;
     z-index: 10;
 }
 :host(.stacked) .popup{
     -webkit-transform: scale(0.9) translateY(-2rem) !important;
-        -ms-transform: scale(0.9) translateY(-2rem) !important;
             transform: scale(0.9) translateY(-2rem) !important;
 }
 .popup{
@@ -1934,7 +1933,6 @@ smPopup.innerHTML = `
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
             flex-direction: column;
     position: relative;
     -ms-flex-item-align: end;
@@ -1944,14 +1942,13 @@ smPopup.innerHTML = `
             align-items: flex-start;
     width: 100%;
     border-radius: 0.8rem 0.8rem 0 0;
-    -webkit-transform: translateY(100%);
-        -ms-transform: translateY(100%);
-            transform: translateY(100%);
+    -webkit-transform: scale(1) translateY(100%);
+            transform: scale(1) translateY(100%);
     -webkit-transition: -webkit-transform 0.3s;
     transition: -webkit-transform 0.3s;
     -o-transition: transform 0.3s;
-    transition: transform 0.3s;
     transition: transform 0.3s, -webkit-transform 0.3s;
+    transition: transform 0.3s;
     background: rgba(var(--foreground-color), 1);
     -webkit-box-shadow: 0 -1rem 2rem #00000020;
             box-shadow: 0 -1rem 2rem #00000020;
@@ -1959,7 +1956,6 @@ smPopup.innerHTML = `
 }
 .container-header{
     display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     width: 100%;
     -webkit-box-align: center;
@@ -1968,13 +1964,11 @@ smPopup.innerHTML = `
 }
 .popup-top{
     display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     width: 100%;
 }
 .popup-body{
     display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -2001,35 +1995,32 @@ smPopup.innerHTML = `
             align-self: center;
         border-radius: 0.4rem;
         height: auto;
-        -webkit-transform: translateY(1rem);
-            -ms-transform: translateY(1rem);
-                transform: translateY(1rem);
+        -webkit-transform: scale(1) translateY(3rem);
+                transform: scale(1) translateY(3rem);
         -webkit-box-shadow: 0 3rem 2rem -0.5rem #00000040;
                 box-shadow: 0 3rem 2rem -0.5rem #00000040;
     }
 }
 @media screen and (max-width: 640px){
-.popup-top{
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
-.handle{
-    height: 0.3rem;
-    width: 2rem;
-    background: rgba(var(--text-color), .2);
-    border-radius: 1rem;
-    margin: 0.5rem 0;
-}
+    .popup-top{
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+                flex-direction: column;
+        -webkit-box-align: center;
+                align-items: center;
+    }
+    .handle{
+        height: 0.3rem;
+        width: 2rem;
+        background: rgba(var(--text-color), .2);
+        border-radius: 1rem;
+        margin: 0.5rem 0;
+    }
 }
 </style>
 <div part="background" class="popup-container hide" role="dialog">
     <div part="popup" class="popup">
-        <div class="popup-top">
+        <div part="popup-header" class="popup-top">
             <div class="handle"></div>
             <slot name="header"></slot>
         </div>
@@ -2081,7 +2072,7 @@ customElements.define('sm-popup', class extends HTMLElement {
             this.pinned = pinned
         }
         this.popupContainer.classList.remove('hide')
-        this.popup.style.transform = 'translateY(0)';
+        this.popup.style.transform = 'none';
         document.body.setAttribute('style', `overflow: hidden; top: -${window.scrollY}px`)
         return this.popupStack
     }
@@ -2089,7 +2080,7 @@ customElements.define('sm-popup', class extends HTMLElement {
         if (window.innerWidth < 640)
             this.popup.style.transform = 'translateY(100%)';
         else
-            this.popup.style.transform = 'translateY(1rem)';
+            this.popup.style.transform = 'translateY(3rem)';
         this.popupContainer.classList.add('hide')
         this.removeAttribute('open')
         if (typeof this.popupStack !== 'undefined') {
@@ -2968,9 +2959,9 @@ smMenu.innerHTML = `
 .moveUp{
     top: auto;
     bottom: 100%;
-    -webkit-transform: translateY(1rem);
-        -ms-transform: translateY(1rem);
-            transform: translateY(1rem);
+    -webkit-transform: translateY(3rem);
+        -ms-transform: translateY(3rem);
+            transform: translateY(3rem);
 }
 .moveLeft{
     left: auto;

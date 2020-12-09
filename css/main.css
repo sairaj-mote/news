@@ -400,7 +400,7 @@ button:disabled {
     transform: none;
   }
 }
-.page {
+.page, .panel {
   animation: fade-in 0.3s;
 }
 
@@ -414,6 +414,8 @@ button:disabled {
 }
 #homepage {
   gap: 2rem 0;
+  background: url(background1.svg) no-repeat;
+  background-size: contain;
 }
 
 #homepage, #main_header, #main_footer {
@@ -429,6 +431,7 @@ button:disabled {
 }
 
 #main_header {
+  border-bottom: 1px solid rgba(var(--text-color), 0.4);
   position: relative;
   padding: 1rem 0;
 }
@@ -438,7 +441,6 @@ button:disabled {
   cursor: pointer;
 }
 #main_header sm-input {
-  grid-column: 1/4;
   width: 100%;
 }
 #main_header sm-input::part(input) {
@@ -453,30 +455,45 @@ button:disabled {
   width: 0.9em;
 }
 #main_header .grid {
+  grid-template-columns: auto auto 1fr auto auto;
+  grid-auto-flow: column;
   gap: 1rem;
-  grid-template-columns: auto 1fr auto;
 }
 
-#user_icon {
+#user_icon,
+#search_articles_icon {
   cursor: pointer;
-  background: rgba(var(--text-color), 0.06);
   height: 2.4rem;
   width: 2.4rem;
   padding: 0.7rem;
-  border-radius: 1rem;
   justify-self: flex-end;
-  grid-row: 1;
-  grid-column: 3;
 }
 
+#settings_popup::part(popup) {
+  height: min(32rem, 60vh);
+}
+#settings_popup::part(popup-body) {
+  padding: 0;
+}
+#settings_popup #settings_panel {
+  padding: 1.5rem;
+}
+#settings_popup #sidebar {
+  list-style: none;
+  padding: 1rem 0;
+}
+#settings_popup .sidebar-item {
+  padding: 1rem 1.5rem;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+#settings_popup .sidebar-item.active {
+  background: rgba(var(--text-color), 0.1);
+}
 #settings_popup section {
   display: grid;
   gap: 0.3rem;
   grid-template-columns: 1fr auto;
-  max-width: 65ch;
-}
-#settings_popup section:first-of-type {
-  margin-top: 1.5rem;
 }
 #settings_popup section:not(:last-of-type) {
   margin-bottom: 1.5rem;
@@ -551,7 +568,7 @@ sm-panel {
 }
 
 #latest_articles_container {
-  gap: 3rem 2rem;
+  gap: 2rem 1rem;
   margin-bottom: 4rem;
 }
 
@@ -674,6 +691,12 @@ sm-panel {
   line-height: 1.8;
   font-size: 1.1em;
   white-space: pre-line;
+  /*&:first-of-type:first-letter {
+      float: left;
+      font-size: 3em;
+      padding: 0 0.4em;
+      line-height: 60px;
+  }*/
 }
 .article-para:not(:first-of-type) {
   margin-top: 1.5rem;
@@ -770,6 +793,10 @@ sm-panel {
 }
 
 @media all and (max-width: 720px) {
+  .hide-on-mobile {
+    display: none;
+  }
+
   #sign_in {
     grid-template-rows: 16rem 1fr;
     max-height: 90vh;
@@ -803,19 +830,10 @@ sm-panel {
 
   #main_header sm-input {
     width: 16rem;
-    grid-column: 3;
-    grid-row: 1;
     justify-self: flex-end;
   }
   #main_header sm-input::part(input) {
     padding: 0.5rem 0.8rem;
-  }
-  #main_header .grid {
-    grid-template-columns: auto auto 1fr auto;
-  }
-
-  #user_icon {
-    grid-column: 4;
   }
 
   #greetings_section {
@@ -856,7 +874,17 @@ sm-panel {
   }
 
   #settings_popup::part(popup) {
-    width: min(100%, 24rem);
+    width: min(100%, 38rem);
+  }
+  #settings_popup::part(popup-header) {
+    padding: 0 1.5rem 1.5rem 0;
+  }
+  #settings_popup .grid {
+    height: 100%;
+    grid-template-columns: 12rem 1fr;
+  }
+  #settings_popup #sidebar {
+    background: rgba(var(--text-color), 0.06);
   }
 }
 @media screen and (min-width: 1024px) {
@@ -865,10 +893,6 @@ sm-panel {
   }
   #homepage main, #main_header main, #main_footer main {
     gap: 4rem;
-  }
-
-  #main_header {
-    margin-bottom: 1rem;
   }
 
   #homepage {
