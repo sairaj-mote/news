@@ -39,6 +39,9 @@ smButton.innerHTML = `
 :host(.round) .button{
     border-radius: 10rem;
 }
+:host(.danger) .button{
+    background: #E53935;
+}
 .button {
     position: relative;
     display: -webkit-box;
@@ -257,7 +260,7 @@ input:focus{
     caret-color: var(--accent-color);
 }
 .input:focus-within:not(.readonly){
-    background: rgba(var(--text-color), 0.1);
+    box-shadow: 0 0 0 0.1rem var(--accent-color) inset;
 }
 .disabled{
     pointer-events: none;
@@ -482,7 +485,7 @@ customElements.define('sm-input',
             this.shadowRoot.querySelector('.label').textContent = this.getAttribute('placeholder')
             if (this.hasAttribute('value')) {
                 this.input.value = this.getAttribute('value')
-                this.checkInput(e)
+                this.checkInput()
             }
             if (this.hasAttribute('required')) {
                 this.input.setAttribute('required', '')
@@ -1968,6 +1971,7 @@ smPopup.innerHTML = `
     width: 100%;
 }
 .popup-body{
+    position: relative;
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: vertical;

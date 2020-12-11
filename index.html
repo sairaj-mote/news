@@ -101,42 +101,49 @@
     </sm-popup>
     <sm-popup id="settings_popup">
         <header class="popup-header" slot="header">
-            <svg class="icon" onclick="this.closest('sm-popup').hide()" viewBox="0 0 64 64">
+            <svg id="close_settings" class="icon" onclick="this.closest('sm-popup').hide()" viewBox="0 0 64 64">
                 <title>close</title>
                 <line x1="64" y1="0" x2="0" y2="64" />
                 <line x1="64" y1="64" x2="0" y2="0" />
             </svg>
-            <h4>Settings</h4>
+            <svg id="back_settings" onclick='hidePanel()' xmlns="http://www.w3.org/2000/svg" class="icon back hide-completely" viewBox="0 0 64 64">
+                <title>Go back</title>
+                <line x1="1" y1="32" x2="64" y2="32"/>
+                <polyline points="29.64 60.97 0.65 32 29.64 3.03"/>
+            </svg>
+            <h4 id="settings_title">Settings</h4>
         </header>
         <div class="grid">
             <ul id="sidebar">
-                <li class="sidebar-item interact active" data-target="profile_panel">Profile</li>
+                <li class="sidebar-item interact active" data-target="profile_panel">Account</li>
                 <li class="sidebar-item interact" data-target="personalise_panel">personalise</li>
                 <li class="sidebar-item interact" data-target="about_panel">About</li>
             </ul>
-            <div id="settings_panel">
+            <div id="settings_panel" class=" hide-on-mobile">
                 <div id="profile_panel" class="panel">
-                    <h5>My FLO ID</h5>
-                    <div class="copy-row">
-                        <h4 id="user_id" class="copy"></h4>
-                        <svg class="icon" onclick="copyToClipboard(this.parentNode)" viewBox="0 0 64 64">
-                            <title>Copy</title>
-                            <rect x="16" y="16" width="48" height="48" rx="6" />
-                            <path d="M.5,47.52V6.5a6,6,0,0,1,6-6h41" />
-                        </svg>
-                    </div>
                     <section>
-                        <sm-button id="sign_in_button" onclick="showPopup('sign_in_popup')">Sign In</sm-button>
+                        <h5>My FLO ID</h5>
+                        <div class="copy-row">
+                            <h4 id="user_id" class="copy"></h4>
+                            <svg class="icon" onclick="copyToClipboard(this.parentNode)" viewBox="0 0 64 64">
+                                <title>Copy</title>
+                                <rect x="16" y="16" width="48" height="48" rx="6" />
+                                <path d="M.5,47.52V6.5a6,6,0,0,1,6-6h41" />
+                            </svg>
+                        </div>
+                    </section>
+                    <section>
+                        <sm-button id="sign_in_button" variant="primary" onclick="showPopup('sign_in_popup')">Sign In</sm-button>
                         <sm-button id="sign_out_button" class="hide-completely" onclick="signOut()">Sign Out</sm-button>
                     </section>
                 </div>
                 <div id="personalise_panel" class="panel hide-completely">
-                    <section>
+                    <section class="setting-toggle">
                         <h4>Dark mode</h4>
                         <p>Toggle dark mode on/off.</p>
                         <sm-switch id="theme_switcher"></sm-switch>
                     </section>
-                    <section>
+                    <section class="setting-toggle">
                         <h4>Haptic feedback</h4>
                         <p>Turn haptic feedbak (vibrations) on/off.</p>
                         <sm-switch id="haptic_feedback_switcher"></sm-switch>
@@ -147,6 +154,25 @@
                 </div>
             </div>
         </div>
+    </sm-popup>
+    <sm-popup id="search_popup">
+        <header class="popup-header" slot="header">
+            <svg id="close_settings" class="icon" onclick="this.closest('sm-popup').hide()" viewBox="0 0 64 64">
+                <title>close</title>
+                <line x1="64" y1="0" x2="0" y2="64" />
+                <line x1="64" y1="64" x2="0" y2="0" />
+            </svg>
+            <h4>Search</h4>
+        </header>
+        <sm-input id="search_articles_input" type="search" placeholder="Search for articles">
+            <svg slot="icon" class="icon" viewBox="0 0 64 64">
+                <title>Search</title>
+                <path d="M25.69,1A24.7,24.7,0,0,1,43.15,43.15,24.7,24.7,0,0,1,8.23,8.22,24.53,24.53,0,0,1,25.69,1m0-1A25.7,25.7,0,1,0,43.85,7.51,25.64,25.64,0,0,0,25.69,0Z"/>
+                <line x1="63.65" y1="63.66" x2="43.36" y2="43.37"/>
+            </svg>
+        </sm-input>
+        <div id="search_results"></div>
+        <img src="looking.svg" alt="">
     </sm-popup>
     <section id="loader_page" class="grid">
         <div id="loader_container">
@@ -181,20 +207,13 @@
     </section>
     <header id="main_header" class="grid"> 
         <div class="grid align-center">
-            <h3 id="homepage_link">RanchiMall Times</h3>
+            <h3 id="homepage_link" class="interact" role="link">RanchiMall Times</h3>
             <h3 id="greetings"></h3>
-            <svg viewBox="0 0 64 64" id="search_articles_icon" class="icon">
+            <svg viewBox="0 0 64 64" id="search_articles_icon" class="icon"  onclick="showPopup('search_popup')">
                 <title>Search</title>
                 <path d="M25.69,1A24.7,24.7,0,0,1,43.15,43.15,24.7,24.7,0,0,1,8.23,8.22,24.53,24.53,0,0,1,25.69,1m0-1A25.7,25.7,0,1,0,43.85,7.51,25.64,25.64,0,0,0,25.69,0Z"/>
                 <line x1="63.65" y1="63.66" x2="43.36" y2="43.37"/>
             </svg>
-            <!--<sm-input id="" type="search" placeholder="Search for articles">
-                <svg slot="icon" class="icon" viewBox="0 0 64 64">
-                    <title>Search</title>
-                    <path d="M25.69,1A24.7,24.7,0,0,1,43.15,43.15,24.7,24.7,0,0,1,8.23,8.22,24.53,24.53,0,0,1,25.69,1m0-1A25.7,25.7,0,1,0,43.85,7.51,25.64,25.64,0,0,0,25.69,0Z"/>
-                    <line x1="63.65" y1="63.66" x2="43.36" y2="43.37"/>
-                </svg>
-            </sm-input>-->
             <svg viewBox="0 0 64 64" id="user_icon" class="icon" onclick="showPopup('settings_popup')">
                 <title>Settings</title>
                 <path d="M31.6,0.5c8.3,0,14.2,5.6,14.2,15S41.1,32.9,32,32.9s-13.8-8-13.8-17.3s5.9-15,14.2-15"/>
@@ -213,7 +232,7 @@
                 <h4>Featured</h4>
             </header>
             <img class="article-image" src="corona.jpg" alt="">
-            <h5 class="article-details">17 Nov 2020 &bull; 4min read</h5>
+            <timw class="article-details">17 Nov 2020 &bull; 4min read</timw>
             <h3 class="article-heading">A Wake Up Call for India - Analysing the falling GDP</h3>
             <p class="article-preview">India is considered as one of the fastest developing country in the world. In middle of the pandemic Covid-19, well developed country's economy has got affected. And India's condition is no different. Gross Domestic Product, it is final value of the goods and services produced within the geographic boundaries of a country during a specified period of time normally a year.  GDP has shrinked by 23.9% for the April to June quarter. In gross value added terms, the economy has shrinked upto 22.8.%. India has never encountered economic shrinkage in at least four decades. This is the first ever occurrence of retarding growth since 1996 when the country started publishing quarterly GDP data. The government's chief economic advisor allocated the declination to "exogenous factors" owing to the Covid-19 pandemic and the emergence of lockdown. Thereafter, stunted economic growth of countries around the globe. The rigid lockdown in India resulted in a huge loss among various sectors and detained economic activities.</p>
             <div class="grid card-options align-center">
@@ -981,14 +1000,21 @@
         const   sidebar = document.getElementById('sidebar'),
                 settingsPanel = document.getElementById('settings_panel'),
                 allPanels = document.querySelectorAll('.panel'),
-                allSidebarItems = document.querySelectorAll('.sidebar-item')
+                allSidebarItems = document.querySelectorAll('.sidebar-item'),
+                backSettings = document.getElementById('back_settings'),
+                closeSettings = document.getElementById('close_settings'),
+                settingsTitle = document.getElementById('settings_title')
+
         
         const domRefs = {}
 
         function showPanel(item, panel){
             if(window.innerWidth < 720){
+                settingsTitle.textContent = item.textContent
                 sidebar.classList.add('hide-on-mobile')
                 settingsPanel.classList.remove('hide-on-mobile')
+                backSettings.classList.remove('hide-completely')
+                closeSettings.classList.add('hide-completely')
             }
             else{
                 allSidebarItems.forEach(panel => panel.classList.remove('active'))
@@ -998,6 +1024,14 @@
             if(!domRefs[panel])
                 domRefs[panel] = document.getElementById(panel)
             domRefs[panel].classList.remove('hide-completely')
+        }
+
+        function hidePanel(){
+            settingsTitle.textContent = 'Settings'
+            backSettings.classList.add('hide-completely')
+            closeSettings.classList.remove('hide-completely')
+            sidebar.classList.remove('hide-on-mobile')
+            settingsPanel.classList.add('hide-on-mobile')
         }
 
         document.addEventListener('click', e => {
@@ -1019,7 +1053,6 @@
             }
         })
         window.addEventListener('hashchange', e => {
-            console.log('changed')
             loadPage()
         })
     </script>
