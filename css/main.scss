@@ -165,6 +165,7 @@ span.ripple{
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 .copy-row {
     display: grid;
@@ -486,7 +487,7 @@ button {
         font-weight: 500;
     }
     section{
-        max-width: 60ch;
+        max-width: 50ch;
         display: grid;
         gap: .3rem;
         justify-items: flex-start;

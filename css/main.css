@@ -176,6 +176,7 @@ span.ripple {
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .copy-row {
@@ -499,7 +500,7 @@ button:disabled {
   font-weight: 500;
 }
 #settings_popup section {
-  max-width: 60ch;
+  max-width: 50ch;
   display: grid;
   gap: 0.3rem;
   justify-items: flex-start;

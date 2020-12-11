@@ -278,7 +278,7 @@
             </div>
         </div>
         <div class="flex align-center">    
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon back" viewBox="0 0 64 64">
+            <svg xmlns="http://www.w3.org/2000/svg" id="back_to_homepage" class="icon back" viewBox="0 0 64 64">
                 <title>Go back</title>
                 <line x1="1" y1="32" x2="64" y2="32"/>
                 <polyline points="29.64 60.97 0.65 32 29.64 3.03"/>
@@ -356,6 +356,14 @@
             }
         })
 
+        const domRefs = {}
+
+        function getRef(elementId){
+            if(!domRefs.elementId)
+                domRefs[elementId] = document.getElementById(elementId)
+            return domRefs[elementId]
+        }
+
         // function required for popups or modals to appear
         class Stack {
             constructor() {
@@ -377,12 +385,10 @@
             zIndex = 10;
 
         async function showPopup(popup, pinned) {
-            if(!domRefs[popup])
-                domRefs[popup] = document.getElementById(popup);
             zIndex++
-            domRefs[popup].setAttribute('style', `z-index: ${zIndex}`)
-            popupStack = domRefs[popup].show(pinned, popupStack)
-            return domRefs[popup];
+            getRef(popup).setAttribute('style', `z-index: ${zIndex}`)
+            popupStack = getRef(popup).show(pinned, popupStack)
+            return getRef(popup);
         }
 
         // hides the popup or modal 
@@ -399,7 +405,7 @@
             //pushes popup as seprate entry in history
             history.pushState({type: 'popup'}, null, null)
 
-            if (firstInput)
+            if (window.innerWidth < 720 && firstInput)
                 firstInput.focusIn()
         })
 
@@ -981,9 +987,7 @@
 
         function showPage(pageId){
             allPages.forEach(page => page.classList.add('hide-completely'))
-            if(!domRefs[pageId])
-                domRefs[pageId] = document.getElementById(pageId)
-            domRefs[pageId].classList.remove('hide-completely')
+            getRef(pageId).classList.remove('hide-completely')
             if(pageId === 'article_page'){
                 currentScrollPosition = window.pageYOffset
                 window.scroll(0, 0)
@@ -1005,9 +1009,6 @@
                 closeSettings = document.getElementById('close_settings'),
                 settingsTitle = document.getElementById('settings_title')
 
-        
-        const domRefs = {}
-
         function showPanel(item, panel){
             if(window.innerWidth < 720){
                 settingsTitle.textContent = item.textContent
@@ -1021,9 +1022,7 @@
                 item.classList.add('active')
             }
             allPanels.forEach(panel => panel.classList.add('hide-completely'))
-            if(!domRefs[panel])
-                domRefs[panel] = document.getElementById(panel)
-            domRefs[panel].classList.remove('hide-completely')
+            getRef(panel).classList.remove('hide-completely')
         }
 
         function hidePanel(){
@@ -1043,7 +1042,7 @@
             /*else if(e.target.closest('.vote-btn')){
                 vote()
             }*/
-            else if(e.target.closest('#homepage_link') || e.target.closest('.back')){
+            else if(e.target.closest('#homepage_link') || e.target.closest('#back_to_homepage')){
                 showPage('homepage')
                 history.pushState({type: 'page', id: 'homepage'}, null, location.pathname + location.search)
             }
