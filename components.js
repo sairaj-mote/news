@@ -39,9 +39,6 @@ smButton.innerHTML = `
 :host(.round) .button{
     border-radius: 10rem;
 }
-:host(.danger) .button{
-    background: #E53935;
-}
 .button {
     position: relative;
     display: -webkit-box;
@@ -1971,7 +1968,6 @@ smPopup.innerHTML = `
     width: 100%;
 }
 .popup-body{
-    position: relative;
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: vertical;
