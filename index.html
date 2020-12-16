@@ -99,6 +99,62 @@
             </div>
         </div>
     </sm-popup>
+    <sm-popup id="settings_popup">
+        <header slot="header" class="popup-header">
+            <svg id="close_settings" class="icon" onclick="this.closest('sm-popup').hide()" viewBox="0 0 64 64">
+                <title>close</title>
+                <line x1="64" y1="0" x2="0" y2="64" />
+                <line x1="64" y1="64" x2="0" y2="0" />
+            </svg>
+            <svg id="back_settings" onclick='hidePanel()' xmlns="http://www.w3.org/2000/svg" class="icon back hide-completely" viewBox="0 0 64 64">
+                <title>Go back</title>
+                <line x1="1" y1="32" x2="64" y2="32"/>
+                <polyline points="29.64 60.97 0.65 32 29.64 3.03"/>
+            </svg>
+            <h4 id="settings_title">Settings</h4>
+        </header>
+        <div class="grid">
+            <aside id="settings_sidebar">
+                <div class="sidebar-item interact active" data-target="profile_panel">Account</div>
+                <div class="sidebar-item interact" data-target="personalise_panel">personalise</div>
+                <div class="sidebar-item interact" data-target="about_panel">About</div>
+            </aside>
+            <div id="settings_panel" class=" hide-on-mobile">
+                <div id="profile_panel" class="panel">
+                    <section>
+                        <h5>My FLO ID</h5>
+                        <div class="copy-row">
+                            <h4 id="user_id" class="copy"></h4>
+                            <svg class="icon" onclick="copyToClipboard(this.parentNode)" viewBox="0 0 64 64">
+                                <title>Copy</title>
+                                <rect x="16" y="16" width="48" height="48" rx="6" />
+                                <path d="M.5,47.52V6.5a6,6,0,0,1,6-6h41" />
+                            </svg>
+                        </div>
+                    </section>
+                    <section>
+                        <sm-button id="sign_in_button" variant="primary" onclick="showPopup('sign_in_popup')">Sign In</sm-button>
+                        <sm-button id="sign_out_button" class="hide-completely" onclick="signOut()">Sign Out</sm-button>
+                    </section>
+                </div>
+                <div id="personalise_panel" class="panel hide-completely">
+                    <section class="setting-toggle">
+                        <h4>Dark mode</h4>
+                        <p>Toggle dark mode on/off.</p>
+                        <sm-switch id="theme_switcher"></sm-switch>
+                    </section>
+                    <section class="setting-toggle">
+                        <h4>Haptic feedback</h4>
+                        <p>Turn haptic feedbak (vibrations) on/off.</p>
+                        <sm-switch id="haptic_feedback_switcher"></sm-switch>
+                    </section>
+                </div>
+                <div id="about_panel" class="panel hide-completely">
+                    <p>Created by RanchiMall, a blockchain incorporated entity</p>
+                </div>
+            </div>
+        </div>
+    </sm-popup>
     <section id="loader_page" class="grid">
         <div id="loader_container">
             <svg id="loader" viewBox="0 0 112 256"xmlns="http://www.w3.org/2000/svg">
@@ -130,13 +186,9 @@
         </div>
         <h4>Getting ready</h4>
     </section>
-    <header id="main_header" class="grid default-layout move-right"> 
+    <header id="main_header" class="grid move-right"> 
         <div class="grid align-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="main-menu-icon icon" onclick="toggleSidebar()" viewBox="0 0 64 64">
-                <line y1="10.66" x2="64" y2="10.66"/>
-                <line y1="32" x2="64" y2="32"/>
-                <line y1="53.34" x2="64" y2="53.34"/>
-            </svg>
+            <h3 id="homepage_link" class="interact" role="link">RanchiMall Times</h3>
             <h3 id="greetings"></h3>
             <sm-input id="search_articles_input" type="search" placeholder="Search for articles">
                 <svg slot="icon" class="icon" viewBox="0 0 64 64">
@@ -145,44 +197,21 @@
                     <line x1="63.65" y1="63.66" x2="43.36" y2="43.37"/>
                 </svg>
             </sm-input>
+            <sm-button class="round">Sign in</sm-button>            
+            <svg viewBox="0 0 64 64" class="icon" onclick="showPopup('settings_popup')">
+                <title>settings</title>
+                <path d="M23,1.58h0a1.16,1.16,0,0,1,1,.58l2.54,4.39a3.14,3.14,0,0,0,2.7,1.59l.31,0C30.37,8,31.19,8,32,8s1.63,0,2.44.12l.31,0a3.14,3.14,0,0,0,2.7-1.59L40,2.16a1.16,1.16,0,0,1,1-.58,1.1,1.1,0,0,1,.58.16L53.42,8.57a1.16,1.16,0,0,1,.42,1.59L51.3,14.57a3.15,3.15,0,0,0,.15,3.4,23.69,23.69,0,0,1,2.45,4.21A3.12,3.12,0,0,0,56.76,24h5.07A1.17,1.17,0,0,1,63,25.17V38.83A1.17,1.17,0,0,1,61.83,40H56.76a3.11,3.11,0,0,0-2.86,1.82,24.33,24.33,0,0,1-2.44,4.23,3.11,3.11,0,0,0-.15,3.39l2.53,4.4a1.13,1.13,0,0,1,.12.88,1.17,1.17,0,0,1-.54.71L41.58,62.26a1.08,1.08,0,0,1-.58.16,1.16,1.16,0,0,1-1-.58l-2.54-4.39a3.14,3.14,0,0,0-2.7-1.59l-.31,0C33.63,56,32.81,56,32,56s-1.63,0-2.44-.12l-.31,0a3.14,3.14,0,0,0-2.7,1.59L24,61.84a1.16,1.16,0,0,1-1,.58,1.1,1.1,0,0,1-.58-.16L10.58,55.43a1.16,1.16,0,0,1-.42-1.59l2.54-4.41a3.15,3.15,0,0,0-.15-3.4,23.69,23.69,0,0,1-2.45-4.21A3.12,3.12,0,0,0,7.24,40H2.17A1.17,1.17,0,0,1,1,38.83V25.17A1.17,1.17,0,0,1,2.17,24H7.24a3.11,3.11,0,0,0,2.86-1.82A24.33,24.33,0,0,1,12.54,18a3.11,3.11,0,0,0,.15-3.39l-2.53-4.4a1.16,1.16,0,0,1,.42-1.59L22.42,1.74A1.08,1.08,0,0,1,23,1.58m0-1a2.11,2.11,0,0,0-1.08.29L10.08,7.7a2.17,2.17,0,0,0-.79,3l2.54,4.4a2.15,2.15,0,0,1-.1,2.31,24.92,24.92,0,0,0-2.54,4.4A2.13,2.13,0,0,1,7.24,23H2.17A2.17,2.17,0,0,0,0,25.17V38.83A2.17,2.17,0,0,0,2.17,41H7.24a2.13,2.13,0,0,1,1.95,1.23,25.25,25.25,0,0,0,2.55,4.39,2.13,2.13,0,0,1,.09,2.31L9.29,53.34a2.17,2.17,0,0,0,.79,3l11.84,6.83a2.11,2.11,0,0,0,1.08.29,2.17,2.17,0,0,0,1.88-1.08L27.41,58a2.14,2.14,0,0,1,1.84-1.09h.21a24.88,24.88,0,0,0,5.08,0h.21A2.14,2.14,0,0,1,36.59,58l2.53,4.39A2.17,2.17,0,0,0,41,63.42a2.11,2.11,0,0,0,1.08-.29L53.92,56.3a2.17,2.17,0,0,0,.79-3l-2.54-4.4a2.15,2.15,0,0,1,.1-2.31,24.92,24.92,0,0,0,2.54-4.4A2.13,2.13,0,0,1,56.76,41h5.07A2.17,2.17,0,0,0,64,38.83V25.17A2.17,2.17,0,0,0,61.83,23H56.76a2.13,2.13,0,0,1-1.95-1.23,25.25,25.25,0,0,0-2.55-4.39,2.13,2.13,0,0,1-.09-2.31l2.54-4.41a2.17,2.17,0,0,0-.79-3L42.08.87A2.11,2.11,0,0,0,41,.58a2.17,2.17,0,0,0-1.88,1.08L36.59,6.05a2.14,2.14,0,0,1-1.84,1.09h-.21a24.88,24.88,0,0,0-5.08,0h-.21a2.14,2.14,0,0,1-1.84-1.09L24.88,1.66A2.17,2.17,0,0,0,23,.58Z"/>
+                <circle cx="32" cy="32" r="11.5"/>
+            </svg>
         </div>
     </header>
     <section id="sidebar_backdrop" class="hide"></section>
-    <aside id="main_sidebar" class="flex direction-column">
-        <div class="flex align-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="main-menu-icon icon" onclick="toggleSidebar()" viewBox="0 0 64 64">
-                <line y1="10.66" x2="64" y2="10.66"/>
-                <line y1="32" x2="64" y2="32"/>
-                <line y1="53.34" x2="64" y2="53.34"/>
-            </svg>
-            <h3 id="homepage_link" class="interact" role="link">RanchiMall Times</h3>
-        </div>
-        <div class="sidebar-item interact" onclick="showPage('categories_page')">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 64 64">
-                <rect x="38" width="26" height="26" rx="4"/>
-                <rect width="26" height="26" rx="4"/>
-                <rect y="38" width="26" height="26" rx="4"/>
-                <rect x="38" y="38" width="26" height="26" rx="4"/>
-            </svg>
-            <span>
-                Categories
-            </span>
-        </div>
-        <div class="sidebar-item interact" onclick="showPage('settings_page')">
-            <svg viewBox="0 0 64 64" class="icon">
-                <title>settings</title>
-                <path d="M41,62.92a1.7,1.7,0,0,1-1.45-.83L37,57.7a2.63,2.63,0,0,0-2.27-1.34h-.26a23.91,23.91,0,0,1-5,0h-.26A2.63,2.63,0,0,0,27,57.7l-2.54,4.39a1.67,1.67,0,0,1-1.44.83,1.72,1.72,0,0,1-.83-.22L10.33,55.86a1.67,1.67,0,0,1-.61-2.27l2.54-4.41a2.61,2.61,0,0,0-.12-2.85A23.77,23.77,0,0,1,9.65,42,2.65,2.65,0,0,0,7.24,40.5H2.17A1.67,1.67,0,0,1,.5,38.83V25.17A1.67,1.67,0,0,1,2.17,23.5H7.24A2.64,2.64,0,0,0,9.65,22a25,25,0,0,1,2.49-4.31,2.63,2.63,0,0,0,.12-2.85l-2.54-4.4a1.67,1.67,0,0,1,.61-2.27L22.17,1.3A1.72,1.72,0,0,1,23,1.08a1.67,1.67,0,0,1,1.44.83L27,6.3a2.63,2.63,0,0,0,2.27,1.34h.26a23.91,23.91,0,0,1,5,0h.26A2.63,2.63,0,0,0,37,6.3l2.53-4.39A1.7,1.7,0,0,1,41,1.08a1.72,1.72,0,0,1,.83.22L53.67,8.14a1.67,1.67,0,0,1,.61,2.27l-2.54,4.41a2.61,2.61,0,0,0,.12,2.85A24.46,24.46,0,0,1,54.35,22a2.65,2.65,0,0,0,2.41,1.52h5.07a1.67,1.67,0,0,1,1.67,1.67V38.83a1.67,1.67,0,0,1-1.67,1.67H56.76A2.63,2.63,0,0,0,54.35,42a24.63,24.63,0,0,1-2.49,4.31,2.63,2.63,0,0,0-.12,2.85l2.54,4.4a1.68,1.68,0,0,1-.61,2.27L41.83,62.7A1.72,1.72,0,0,1,41,62.92Z"/>
-                <path d="M23,1.58h0a1.16,1.16,0,0,1,1,.58l2.54,4.39a3.14,3.14,0,0,0,2.7,1.59l.31,0C30.37,8,31.19,8,32,8s1.63,0,2.44.12l.31,0a3.14,3.14,0,0,0,2.7-1.59L40,2.16a1.16,1.16,0,0,1,1-.58,1.1,1.1,0,0,1,.58.16L53.42,8.57a1.16,1.16,0,0,1,.42,1.59L51.3,14.57a3.15,3.15,0,0,0,.15,3.4,23.69,23.69,0,0,1,2.45,4.21A3.12,3.12,0,0,0,56.76,24h5.07A1.17,1.17,0,0,1,63,25.17V38.83A1.17,1.17,0,0,1,61.83,40H56.76a3.11,3.11,0,0,0-2.86,1.82,24.33,24.33,0,0,1-2.44,4.23,3.11,3.11,0,0,0-.15,3.39l2.53,4.4a1.13,1.13,0,0,1,.12.88,1.17,1.17,0,0,1-.54.71L41.58,62.26a1.08,1.08,0,0,1-.58.16,1.16,1.16,0,0,1-1-.58l-2.54-4.39a3.14,3.14,0,0,0-2.7-1.59l-.31,0C33.63,56,32.81,56,32,56s-1.63,0-2.44-.12l-.31,0a3.14,3.14,0,0,0-2.7,1.59L24,61.84a1.16,1.16,0,0,1-1,.58,1.1,1.1,0,0,1-.58-.16L10.58,55.43a1.16,1.16,0,0,1-.42-1.59l2.54-4.41a3.15,3.15,0,0,0-.15-3.4,23.69,23.69,0,0,1-2.45-4.21A3.12,3.12,0,0,0,7.24,40H2.17A1.17,1.17,0,0,1,1,38.83V25.17A1.17,1.17,0,0,1,2.17,24H7.24a3.11,3.11,0,0,0,2.86-1.82A24.33,24.33,0,0,1,12.54,18a3.11,3.11,0,0,0,.15-3.39l-2.53-4.4a1.16,1.16,0,0,1,.42-1.59L22.42,1.74A1.08,1.08,0,0,1,23,1.58m0-1a2.11,2.11,0,0,0-1.08.29L10.08,7.7a2.17,2.17,0,0,0-.79,3l2.54,4.4a2.15,2.15,0,0,1-.1,2.31,24.92,24.92,0,0,0-2.54,4.4A2.13,2.13,0,0,1,7.24,23H2.17A2.17,2.17,0,0,0,0,25.17V38.83A2.17,2.17,0,0,0,2.17,41H7.24a2.13,2.13,0,0,1,1.95,1.23,25.25,25.25,0,0,0,2.55,4.39,2.13,2.13,0,0,1,.09,2.31L9.29,53.34a2.17,2.17,0,0,0,.79,3l11.84,6.83a2.11,2.11,0,0,0,1.08.29,2.17,2.17,0,0,0,1.88-1.08L27.41,58a2.14,2.14,0,0,1,1.84-1.09h.21a24.88,24.88,0,0,0,5.08,0h.21A2.14,2.14,0,0,1,36.59,58l2.53,4.39A2.17,2.17,0,0,0,41,63.42a2.11,2.11,0,0,0,1.08-.29L53.92,56.3a2.17,2.17,0,0,0,.79-3l-2.54-4.4a2.15,2.15,0,0,1,.1-2.31,24.92,24.92,0,0,0,2.54-4.4A2.13,2.13,0,0,1,56.76,41h5.07A2.17,2.17,0,0,0,64,38.83V25.17A2.17,2.17,0,0,0,61.83,23H56.76a2.13,2.13,0,0,1-1.95-1.23,25.25,25.25,0,0,0-2.55-4.39,2.13,2.13,0,0,1-.09-2.31l2.54-4.41a2.17,2.17,0,0,0-.79-3L42.08.87A2.11,2.11,0,0,0,41,.58a2.17,2.17,0,0,0-1.88,1.08L36.59,6.05a2.14,2.14,0,0,1-1.84,1.09h-.21a24.88,24.88,0,0,0-5.08,0h-.21a2.14,2.14,0,0,1-1.84-1.09L24.88,1.66A2.17,2.17,0,0,0,23,.58Z"/><circle class="a" cx="32" cy="32" r="11.5"/><path d="M32,21A11,11,0,1,1,21,32,11,11,0,0,1,32,21m0-1A12,12,0,1,0,44,32,12,12,0,0,0,32,20Z"/>
-            </svg>
-            <span>
-                Settings
-            </span>
-        </div>
+    <!--<aside id="main_sidebar" class="flex direction-column">
         <div id="get_started_card" class="flex direction-column">
             <p>Personalise your experience and much more...</p>
             <sm-button variant="primary">Get started</sm-button>
         </div>
-    </aside>
+    </aside>-->
     <section id="homepage" class="page default-layout hide-completely move-right">
         <section id="greetings_section" class="grid">
             <img src="tagline.svg" alt="">
@@ -209,19 +238,18 @@
                 </span>
             </div>
         </section>
-        <sm-tab-header target="article_categories" variant="tab" class="round header">
-            <sm-tab>Latest</sm-tab>
-            <sm-tab>Trending</sm-tab>
-            <sm-tab>Tech</sm-tab>
-            <sm-tab>Politics</sm-tab>
-            <sm-tab>Economics</sm-tab>
-            <sm-tab>Science</sm-tab>
-            <sm-tab>Arts</sm-tab>
-        </sm-tab-header>
-        <sm-tab-panels id="article_categories">
-            <sm-panel id="latest_articles_container"></sm-panel>
-            <sm-panel></sm-panel>
-        </sm-tab-panels>
+        <div id="categories_section" class="grid"> 
+            <ul>
+                <li>Latest</li>
+                <li>Trending</li>
+                <li>Tech</li>
+                <li>Politics</li>
+                <li>Economics</li>
+                <li>Science</li>
+                <li>Arts</li>
+            </ul>
+            <div id="latest_articles_container"></div>
+        </div>
     </section>
     <section id="search_page" class="page">
         <div class="default-layout">
@@ -270,57 +298,6 @@
         <h5 id="article_details" class="article-details"></h5>
         <h3 id="article_title" class="article-heading"></h3>
         <div id="article_body"></div>
-    </section>
-    <section id="settings_page" class="page default-layout move-right">
-        <header class="page-header flex align-center">
-            <svg id="back_settings" onclick='hidePanel()' xmlns="http://www.w3.org/2000/svg" class="icon back hide-completely" viewBox="0 0 64 64">
-                <title>Go back</title>
-                <line x1="1" y1="32" x2="64" y2="32"/>
-                <polyline points="29.64 60.97 0.65 32 29.64 3.03"/>
-            </svg>
-            <h3 id="settings_title">Settings</h3>
-        </header>
-        <div class="grid">
-            <aside id="settings_sidebar">
-                <div class="sidebar-item interact active" data-target="profile_panel">Account</div>
-                <div class="sidebar-item interact" data-target="personalise_panel">personalise</div>
-                <div class="sidebar-item interact" data-target="about_panel">About</div>
-            </aside>
-            <div id="settings_panel" class=" hide-on-mobile">
-                <div id="profile_panel" class="panel">
-                    <section>
-                        <h5>My FLO ID</h5>
-                        <div class="copy-row">
-                            <h4 id="user_id" class="copy"></h4>
-                            <svg class="icon" onclick="copyToClipboard(this.parentNode)" viewBox="0 0 64 64">
-                                <title>Copy</title>
-                                <rect x="16" y="16" width="48" height="48" rx="6" />
-                                <path d="M.5,47.52V6.5a6,6,0,0,1,6-6h41" />
-                            </svg>
-                        </div>
-                    </section>
-                    <section>
-                        <sm-button id="sign_in_button" variant="primary" onclick="showPopup('sign_in_popup')">Sign In</sm-button>
-                        <sm-button id="sign_out_button" class="hide-completely" onclick="signOut()">Sign Out</sm-button>
-                    </section>
-                </div>
-                <div id="personalise_panel" class="panel hide-completely">
-                    <section class="setting-toggle">
-                        <h4>Dark mode</h4>
-                        <p>Toggle dark mode on/off.</p>
-                        <sm-switch id="theme_switcher"></sm-switch>
-                    </section>
-                    <section class="setting-toggle">
-                        <h4>Haptic feedback</h4>
-                        <p>Turn haptic feedbak (vibrations) on/off.</p>
-                        <sm-switch id="haptic_feedback_switcher"></sm-switch>
-                    </section>
-                </div>
-                <div id="about_panel" class="panel hide-completely">
-                    <p>Created by RanchiMall, a blockchain incorporated entity</p>
-                </div>
-            </div>
-        </div>
     </section>
     <footer id="main_footer" class="default-layout move-right">
         <p>Created by RanchiMall, a blockchain incorporated entity</p>
@@ -1063,6 +1040,7 @@
                 allPanels = document.querySelectorAll('.panel'),
                 allSidebarItems = document.querySelectorAll('.sidebar-item'),
                 backSettings = document.getElementById('back_settings'),
+                closeSettings = document.getElementById('close_settings'),
                 settingsTitle = document.getElementById('settings_title')
 
         function showPanel(item, panel){
@@ -1071,6 +1049,7 @@
                 settingsSidebar.classList.add('hide-on-mobile')
                 settingsPanel.classList.remove('hide-on-mobile')
                 backSettings.classList.remove('hide-completely')
+                closeSettings.classList.add('hide-completely')
             }
             else{
                 allSidebarItems.forEach(panel => panel.classList.remove('active'))
@@ -1083,6 +1062,7 @@
         function hidePanel(){
             settingsTitle.textContent = 'Settings'
             backSettings.classList.add('hide-completely')
+            closeSettings.classList.remove('hide-completely')
             settingsSidebar.classList.remove('hide-on-mobile')
             settingsPanel.classList.add('hide-on-mobile')
         }

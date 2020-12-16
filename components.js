@@ -75,8 +75,8 @@ span.ripple {
     background: rgba(var(--text-color), 0.2);
 }
 :host(:not([disabled])) .button:focus{
-    -webkit-box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.1), 0 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
-            box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.1), 0 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 0 0 0.1rem var(--accent-color) inset;
+            box-shadow: 0 0 0 0.1rem var(--accent-color) inset;
 }
 :host([variant='outlined']) .button:focus{
     -webkit-box-shadow: 0 0 0 1px rgba(var(--text-color), 0.2) inset, 0 0.1rem 0.1rem rgba(0, 0, 0, 0.1), 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
