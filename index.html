@@ -217,39 +217,35 @@
             <img src="tagline.svg" alt="">
             <img src="work-from-home.svg" alt="">
         </section>
-        <section id="featured">
-            <header>
-                <h4>Featured</h4>
-            </header>
-            <img class="article-image" src="corona.jpg" alt="">
-            <timw class="article-details">17 Nov 2020 &bull; 4min read</timw>
-            <h3 class="article-heading">A Wake Up Call for India - Analysing the falling GDP</h3>
-            <p class="article-preview">India is considered as one of the fastest developing country in the world. In middle of the pandemic Covid-19, well developed country's economy has got affected. And India's condition is no different. Gross Domestic Product, it is final value of the goods and services produced within the geographic boundaries of a country during a specified period of time normally a year.  GDP has shrinked by 23.9% for the April to June quarter. In gross value added terms, the economy has shrinked upto 22.8.%. India has never encountered economic shrinkage in at least four decades. This is the first ever occurrence of retarding growth since 1996 when the country started publishing quarterly GDP data. The government's chief economic advisor allocated the declination to "exogenous factors" owing to the Covid-19 pandemic and the emergence of lockdown. Thereafter, stunted economic growth of countries around the globe. The rigid lockdown in India resulted in a huge loss among various sectors and detained economic activities.</p>
-            <div class="grid card-options align-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 64 64">
-                    <title>like</title>
-                    <path d="M46.63,4.45A20.23,20.23,0,0,0,32,10.74,20.23,20.23,0,0,0,17.37,4.45C6,4.45,0,13.82,0,25.5,0,50.88,32,59.55,32,59.55s32-8.67,32-34C64,13.82,58,4.45,46.63,4.45Z"/>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 64 64">
-                    <path d="M31.218 49.5871L11.5 63.0531V6C11.5 2.96243 13.9624 0.5 17 0.5H46C49.0376 0.5 51.5 2.96243 51.5 6V63.0531L31.782 49.5871L31.5 49.3945L31.218 49.5871Z"/>
-                </svg>
-                <span>
-                    Read More
-                </span>
-            </div>
+        <section id="articles_section" class="grid">
+            <section id="featured">
+                <header>
+                    <h4>Featured</h4>
+                </header>
+                <img class="article-image" src="corona.jpg" alt="">
+                <timw class="article-details">17 Nov 2020 &bull; 4min read</timw>
+                <h3 class="article-heading">A Wake Up Call for India - Analysing the falling GDP</h3>
+                <p class="article-preview">India is considered as one of the fastest developing country in the world. In middle of the pandemic Covid-19, well developed country's economy has got affected. And India's condition is no different. Gross Domestic Product, it is final value of the goods and services produced within the geographic boundaries of a country during a specified period of time normally a year.  GDP has shrinked by 23.9% for the April to June quarter. In gross value added terms, the economy has shrinked upto 22.8.%. India has never encountered economic shrinkage in at least four decades. This is the first ever occurrence of retarding growth since 1996 when the country started publishing quarterly GDP data. The government's chief economic advisor allocated the declination to "exogenous factors" owing to the Covid-19 pandemic and the emergence of lockdown. Thereafter, stunted economic growth of countries around the globe. The rigid lockdown in India resulted in a huge loss among various sectors and detained economic activities.</p>
+                <div class="grid card-options align-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 64 64">
+                        <title>like</title>
+                        <path d="M46.63,4.45A20.23,20.23,0,0,0,32,10.74,20.23,20.23,0,0,0,17.37,4.45C6,4.45,0,13.82,0,25.5,0,50.88,32,59.55,32,59.55s32-8.67,32-34C64,13.82,58,4.45,46.63,4.45Z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 64 64">
+                        <path d="M31.218 49.5871L11.5 63.0531V6C11.5 2.96243 13.9624 0.5 17 0.5H46C49.0376 0.5 51.5 2.96243 51.5 6V63.0531L31.782 49.5871L31.5 49.3945L31.218 49.5871Z"/>
+                    </svg>
+                    <span>
+                        Read More
+                    </span>
+                </div>
+            </section>
+            <section>
+                <header>
+                    <h4>Latest</h4>
+                </header>
+                <div id="latest_articles_container" class="grid"></div>
+            </section>
         </section>
-        <div id="categories_section" class="grid"> 
-            <ul>
-                <li>Latest</li>
-                <li>Trending</li>
-                <li>Tech</li>
-                <li>Politics</li>
-                <li>Economics</li>
-                <li>Science</li>
-                <li>Arts</li>
-            </ul>
-            <div id="latest_articles_container"></div>
-        </div>
     </section>
     <section id="search_page" class="page">
         <div class="default-layout">
@@ -272,7 +268,7 @@
             <h3>Categories</h3>
         </header>
     </section>
-    <section id="article_page" class="article page">
+    <article id="article_page" class="article page">
         <div id="article_options" class="flex">
             <div class="vote-btn option interact">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon liked" viewBox="0 0 64 64">
@@ -298,7 +294,7 @@
         <h5 id="article_details" class="article-details"></h5>
         <h3 id="article_title" class="article-heading"></h3>
         <div id="article_body"></div>
-    </section>
+    </article>
     <footer id="main_footer" class="default-layout move-right">
         <p>Created by RanchiMall, a blockchain incorporated entity</p>
     </footer>
@@ -1043,13 +1039,71 @@
                 closeSettings = document.getElementById('close_settings'),
                 settingsTitle = document.getElementById('settings_title')
 
+        
+        const flyOutLeft = [
+            {
+                transform: 'translateX(0)',
+                opacity: 1
+            },
+            {
+                transform: 'translateX(-1rem)',
+                opacity: 0
+            },
+        ]
+
+        const flyInLeft = [
+        {
+                transform: 'translateX(1rem)',
+                opacity: 0
+            },
+            {
+                transform: 'translateX(0)',
+                opacity: 1
+            },
+        ]
+
+        const flyOutRight = [
+            {
+                transform: 'translateX(0)',
+                opacity: 1
+            },
+            {
+                transform: 'translateX(1rem)',
+                opacity: 0
+            },
+        ]
+
+        const flyInRight = [
+        {
+                transform: 'translateX(-1rem)',
+                opacity: 0
+            },
+            {
+                transform: 'translateX(0)',
+                opacity: 1
+            },
+        ]
+
+        const animOptions = {
+            duration: 150,
+            easing: 'ease',
+            fill: 'forwards'
+        }
+
         function showPanel(item, panel){
             if(window.innerWidth < 720){
-                settingsTitle.textContent = item.textContent
-                settingsSidebar.classList.add('hide-on-mobile')
-                settingsPanel.classList.remove('hide-on-mobile')
-                backSettings.classList.remove('hide-completely')
-                closeSettings.classList.add('hide-completely')
+                settingsTitle.animate(flyOutLeft, animOptions)
+                settingsSidebar.animate(flyOutLeft, animOptions)
+                closeSettings.animate(flyOutLeft, animOptions).onfinish = () => {
+                    settingsTitle.textContent = item.textContent
+                    settingsSidebar.classList.add('hide-on-mobile')
+                    settingsPanel.classList.remove('hide-on-mobile')
+                    closeSettings.classList.add('hide-completely')
+                    backSettings.classList.remove('hide-completely')
+                    backSettings.animate(flyInLeft, animOptions)
+                    settingsTitle.animate(flyInLeft, animOptions)
+                    settingsPanel.animate(flyInLeft, animOptions)
+                }
             }
             else{
                 allSidebarItems.forEach(panel => panel.classList.remove('active'))
@@ -1058,13 +1112,20 @@
             allPanels.forEach(panel => panel.classList.add('hide-completely'))
             getRef(panel).classList.remove('hide-completely')
         }
-
+        
         function hidePanel(){
-            settingsTitle.textContent = 'Settings'
-            backSettings.classList.add('hide-completely')
-            closeSettings.classList.remove('hide-completely')
-            settingsSidebar.classList.remove('hide-on-mobile')
-            settingsPanel.classList.add('hide-on-mobile')
+            settingsTitle.animate(flyOutRight, animOptions)
+            settingsPanel.animate(flyOutRight, animOptions)
+            backSettings.animate(flyOutRight, animOptions).onfinish = () => {
+                settingsTitle.textContent = 'Settings'
+                backSettings.classList.add('hide-completely')
+                closeSettings.classList.remove('hide-completely')
+                settingsPanel.classList.add('hide-on-mobile')
+                settingsSidebar.classList.remove('hide-on-mobile')
+                closeSettings.animate(flyInRight, animOptions)
+                settingsTitle.animate(flyInRight, animOptions)
+                settingsSidebar.animate(flyInRight, animOptions)
+            }
         }
 
         document.addEventListener('click', e => {
